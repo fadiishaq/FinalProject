@@ -2,6 +2,7 @@ package windows;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -14,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.JSeparator;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -22,6 +25,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JToggleButton;
 
 public class EmployeeInfoWindow extends JFrame {
+	 private Dimension dl, db, center; 
 
 	private JPanel contentPane;
 	private static int i = 1;
@@ -56,6 +60,11 @@ public class EmployeeInfoWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+			// display window in the center
+			center = Toolkit.getDefaultToolkit().getScreenSize();
+			setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
+
+		
 		JLabel label = new JLabel("Employee");
 		label.setFont(new Font("Tahoma", Font.BOLD, 43));
 		label.setBounds(168, 11, 571, 90);
@@ -138,7 +147,7 @@ public class EmployeeInfoWindow extends JFrame {
 
 					ArrayList<Employee> employeesFound= SearchPersonWindow.getEmployeesFound();
 					if(employeesFound.size() == 2) {
-						EmployeeInfoWindow win2 = new EmployeeInfoWindow);
+						//EmployeeInfoWindow win2 = new EmployeeInfoWindow(index, showNextButton);
 					}
 					
 				}

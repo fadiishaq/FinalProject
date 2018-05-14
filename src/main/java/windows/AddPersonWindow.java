@@ -17,9 +17,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.Color;
+import java.awt.Dimension;
 
 public class AddPersonWindow extends JFrame {
+	 private Dimension dl, db, center; 
 
 	private JPanel contentPane;
 	private final Action action = new SwingAction();
@@ -50,6 +53,10 @@ public class AddPersonWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		// display window in the center
+		center = Toolkit.getDefaultToolkit().getScreenSize();
+		setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
 
 		JButton btnAddEmployee = new JButton("Add Employee");
 		btnAddEmployee.setBackground(SystemColor.controlHighlight);

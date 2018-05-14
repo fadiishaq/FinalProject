@@ -1,6 +1,7 @@
 package windows;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -15,6 +16,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.Panel;
+import java.awt.Toolkit;
 
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
@@ -24,6 +26,8 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class SearchPersonWindow extends JFrame {
+
+	 private Dimension dl, db, center; 
 
 	private static JPanel contentPane;
 	private JTextField name;
@@ -70,6 +74,11 @@ public class SearchPersonWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+			// display window in the center
+			center = Toolkit.getDefaultToolkit().getScreenSize();
+			setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
+
 
 		JLabel lblNewLabel = new JLabel("Search Person");
 		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 47));
@@ -106,8 +115,6 @@ public class SearchPersonWindow extends JFrame {
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				Thread thread1 = new Thread();
-
 				if ((employeeBox.isSelected() || studentBox.isSelected()) && unlimitedBox.isSelected())
 					JOptionPane.showMessageDialog(null, "Please check one box only");
 
@@ -122,43 +129,15 @@ public class SearchPersonWindow extends JFrame {
 
 					if (employeesFound != null) {
 
-
-					}
+					} 
 
 					for (int i = 0; i < employeesFound.size(); i++) {
 
-						EmployeeInfoWindow win = new EmployeeInfoWindow(i, true);
+						EmployeeInfoWindow win = new EmployeeInfoWindow(employeesFound.get(i).getNum() + 1, false);
 						windowsList.add(win);
 						win.setVisible(true);
 
 					}
-					/*
-					 * // createTextField(employeesFound.size()); // createResult(employeesFound);
-					 * 
-					 * ArrayList<JFrame> windowsList = new ArrayList();
-					 * 
-					 * for (int i = 0; i < employeesFound.size(); i++) {
-					 * 
-					 * EmployeeInfoWindow win = new EmployeeInfoWindow(i, false);
-					 * windowsList.add(win);
-					 * 
-					 * }
-					 * 
-					 * for (JFrame win : windowsList) {
-					 * 
-					 * win.setVisible(true);
-					 * 
-					 * 
-					 * }
-					 * 
-					 * }
-					 * 
-					 * else {
-					 * 
-					 * JOptionPane.showMessageDialog(null, "no employees found");
-					 * 
-					 * }
-					 */
 
 				}
 
@@ -403,15 +382,12 @@ public class SearchPersonWindow extends JFrame {
 		return studentsFound;
 	}
 
-
 	public static ArrayList<Employee> getEmployeesFound() {
 		return employeesFound;
 	}
 
-
 	public ArrayList<Administator> getAdminsFound() {
 		return adminsFound;
 	}
-
 
 }

@@ -10,9 +10,10 @@ import windows.EmployeeInfoWindow;
 
 public class Employee extends Person {
 	private int salary;
+	
 
-	public Employee(String name, int age, String streetName, String houseNumber, String city, int salary) {
-		super(name, age, new Address(streetName, houseNumber, city));
+	public Employee(String name, int age, String streetName, String houseNumber, String city, int salary, int num) {
+		super(name, age, new Address(streetName, houseNumber, city), num);
 		this.salary = salary;
 	}
 

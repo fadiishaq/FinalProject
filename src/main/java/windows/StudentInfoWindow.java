@@ -2,6 +2,7 @@ package windows;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.JSeparator;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -16,6 +19,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
 public class StudentInfoWindow extends JFrame {
+	 private Dimension dl, db, center; 
 
 	private JPanel contentPane;
 
@@ -47,6 +51,11 @@ public class StudentInfoWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+			// display window in the center
+			center = Toolkit.getDefaultToolkit().getScreenSize();
+			setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
+
 
 		JLabel label = new JLabel("Student");
 		label.setFont(new Font("Tahoma", Font.BOLD, 43));

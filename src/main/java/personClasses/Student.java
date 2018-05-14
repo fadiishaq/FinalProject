@@ -13,8 +13,8 @@ public class Student extends Person{
 		super();
 	}
 
-	public Student(String name, int age, String streetName, String houseNumber, String city, int grade) {
-		super(name, age, new Address(streetName, houseNumber, city));
+	public Student(String name, int age, String streetName, String houseNumber, String city, int grade, int num) {
+		super(name, age, new Address(streetName, houseNumber, city), num);
 		this.grade = grade;
 	}
 

@@ -2,6 +2,7 @@ package windows;
 
 import testPackage.PersonManagerTest;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -33,6 +34,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.List;
+import java.awt.Toolkit;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -52,6 +54,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
 
 public class LoginPageWindow extends JFrame {
+	 private Dimension dl, db, center; 
 
 	private static File file1 = new File("admins.txt");
 	private static File file2 = new File("employees.txt");
@@ -64,7 +67,6 @@ public class LoginPageWindow extends JFrame {
 	static ObjectMapper om1 = new ObjectMapper();
 	static ObjectMapper om2 = new ObjectMapper();
 	static ObjectMapper om3 = new ObjectMapper();
-
 
 	static Scanner scanner1 = null;
 	static Scanner scanner2 = null;
@@ -81,7 +83,6 @@ public class LoginPageWindow extends JFrame {
 	 */
 	public static void main(String[] args) {
 
-		
 		try {
 
 			scanner1 = new Scanner(file1);
@@ -94,14 +95,14 @@ public class LoginPageWindow extends JFrame {
 
 		if (file1.exists()) {
 			if (scanner1.hasNextLine()) {
-				
-				
+
 				try {
-					
-					adminsList = om1.readValue(file1, new TypeReference<ArrayList<Administator>>() {});
-					
+
+					adminsList = om1.readValue(file1, new TypeReference<ArrayList<Administator>>() {
+					});
+
 					scanner1.close();
-					
+
 				} catch (JsonParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -112,43 +113,26 @@ public class LoginPageWindow extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				
-				
-				
-				
-				
-				
-				
-			/*	try {
-					adminsList = om1.readValue(scanner1.nextLine(), new TypeReference<ArrayList<Administator>>() {
-					});
-					System.out.println(adminsList);
 
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} */
-				
-				
-				
-				
-				
-				
-				
-				
+				/*
+				 * try { adminsList = om1.readValue(scanner1.nextLine(), new
+				 * TypeReference<ArrayList<Administator>>() { });
+				 * System.out.println(adminsList);
+				 * 
+				 * } catch (Exception e) { // TODO Auto-generated catch block
+				 * e.printStackTrace(); }
+				 */
 
 			}
 		}
-		
+
 		if (file2.exists()) {
 			if (scanner2.hasNextLine()) {
-				
+
 				try {
-					
+
 					employeesList = om2.readValue(scanner2.nextLine(), new TypeReference<ArrayList<Employee>>() {
-					
-						
+
 					});
 				} catch (JsonParseException e) {
 					// TODO Auto-generated catch block
@@ -160,24 +144,23 @@ public class LoginPageWindow extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-		/*		try {
-					employeesList = om2.readValue(scanner2.nextLine(), new TypeReference<ArrayList<Employee>>() {
-					});
-					System.out.println(employeesList);
 
-				} catch (Exception e) {
-					e.printStackTrace();
-				} */
+				/*
+				 * try { employeesList = om2.readValue(scanner2.nextLine(), new
+				 * TypeReference<ArrayList<Employee>>() { }); System.out.println(employeesList);
+				 * 
+				 * } catch (Exception e) { e.printStackTrace(); }
+				 */
 
 			}
 		}
-		
+
 		if (file3.exists()) {
 			if (scanner3.hasNextLine()) {
-				
+
 				try {
-					studentsList = om3.readValue(scanner3.nextLine(), new TypeReference<ArrayList<Student>>() {});
+					studentsList = om3.readValue(scanner3.nextLine(), new TypeReference<ArrayList<Student>>() {
+					});
 				} catch (JsonParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -188,22 +171,15 @@ public class LoginPageWindow extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				
-/*				try {
-					studentsList = om3.readValue(scanner3.nextLine(), new TypeReference<ArrayList<Student>>() {
-					});
-					System.out.println(studentsList);
-					scanner3.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				} */
+
+				/*
+				 * try { studentsList = om3.readValue(scanner3.nextLine(), new
+				 * TypeReference<ArrayList<Student>>() { }); System.out.println(studentsList);
+				 * scanner3.close(); } catch (Exception e) { e.printStackTrace(); }
+				 */
 
 			}
 		}
-
-
-		
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -227,6 +203,11 @@ public class LoginPageWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+			// display window in the center
+			center = Toolkit.getDefaultToolkit().getScreenSize();
+			setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
+
 
 		JLabel nameLabel = new JLabel("Username");
 		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 28));
@@ -254,7 +235,6 @@ public class LoginPageWindow extends JFrame {
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-
 				/*
 				 * ObjectMapper om = new ObjectMapper();
 				 * 
@@ -278,27 +258,32 @@ public class LoginPageWindow extends JFrame {
 						PersonManagerWindow tab = new PersonManagerWindow();
 						tab.setVisible(true);
 					}
-					
+
 					else
-						JOptionPane.showMessageDialog(null, "Your login attempt has failed. Make sure the username and password are correct.", "Login Error", JOptionPane.WARNING_MESSAGE, null);
+						JOptionPane.showMessageDialog(null,
+								"Your login attempt has failed. Make sure the username and password are correct.",
+								"Login Error", JOptionPane.WARNING_MESSAGE, null);
 
 				}
 
 				else {
 					boolean tf = false;
 					for (Administator admin : adminsList) {
-						if (username.getText().equals(admin.getUserName()) && password.getText().equals(admin.getPassword())) {
+						if (username.getText().equals(admin.getUserName())
+								&& password.getText().equals(admin.getPassword())) {
 							tf = true;
 							PersonManagerWindow tab = new PersonManagerWindow();
 							setVisible(false);
 							tab.setVisible(true);
 						}
 
-					}//for
-					
-					if(tf == false)
-						JOptionPane.showMessageDialog(null, "Your login attempt has failed. Make sure the username and password are correct.", "Login Error", JOptionPane.WARNING_MESSAGE, null);
-					
+					} // for
+
+					if (tf == false)
+						JOptionPane.showMessageDialog(null,
+								"Your login attempt has failed. Make sure the username and password are correct.",
+								"Login Error", JOptionPane.WARNING_MESSAGE, null);
+
 				}
 
 			}
@@ -309,15 +294,15 @@ public class LoginPageWindow extends JFrame {
 		password = new JPasswordField();
 		password.setBounds(269, 164, 184, 34);
 		contentPane.add(password);
-		
+
 		JSeparator separator = new JSeparator();
 		separator.setBounds(40, 68, 488, 5);
 		contentPane.add(separator);
-		
+
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(40, 222, 481, 5);
 		contentPane.add(separator_1);
-		
+
 		JButton btnReset = new JButton("Reset");
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -329,7 +314,7 @@ public class LoginPageWindow extends JFrame {
 		btnReset.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnReset.setBounds(219, 238, 127, 53);
 		contentPane.add(btnReset);
-		
+
 		JButton btnExit = new JButton("Exit");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

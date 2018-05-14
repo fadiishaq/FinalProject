@@ -6,22 +6,20 @@ public class Person {
 	private String name;
 	private int age;
 	private Address address;
-	
-	public Person() {	
-	
+	private int num;
+
+	public Person() {
+
 	}
-	
-	public Person(String name, int age) {
-		this.name = name;
-		this.age = age;
-	}
-	
-	public Person(String name, int age, Address address) {
+
+	public Person(String name, int age, Address address, int num) {
+		super();
 		this.name = name;
 		this.age = age;
 		this.address = address;
+		this.num = num;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -37,7 +35,7 @@ public class Person {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
+
 	public Address getAddress() {
 		return address;
 	}
@@ -49,5 +47,13 @@ public class Person {
 	public String toString() {
 		return "Name: " + this.name + "\nAge: " + this.age + "\nAddress: " + this.address;
 	}
-	
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
 }

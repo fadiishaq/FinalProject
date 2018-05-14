@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -21,9 +23,12 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.SwingConstants;
 
 public class AddAdminWindow extends JFrame {
+	 private Dimension dl, db, center; 
 
 	private JPanel contentPane;
 	private JTextField age;
@@ -67,6 +72,10 @@ public class AddAdminWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		// display window in the center
+		center = Toolkit.getDefaultToolkit().getScreenSize();
+		setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
 
 		JLabel lblAddAdmin = new JLabel("Add Administration");
 		lblAddAdmin.setFont(new Font("Tahoma", Font.BOLD, 71));
@@ -95,7 +104,7 @@ public class AddAdminWindow extends JFrame {
 						
 						Administator admin = new Administator(name.getText(), Integer.parseInt(age.getText()),
 								street.getText(), house.getText(), city.getText(), username.getText(),
-								password.getText());
+								password.getText(), LoginPageWindow.getEmployeesList().size() - 1);
 						LoginPageWindow.getAdminsList().add(admin);
 						AdminInfoWindow adminInfo = new AdminInfoWindow(LoginPageWindow.getAdminsList().size() - 1);
 						setVisible(false);
@@ -119,9 +128,7 @@ public class AddAdminWindow extends JFrame {
 		JButton btnNewButton = new JButton("back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AddPersonWindow win = new AddPersonWindow();
 				setVisible(false);
-				win.setVisible(true);
 				
 			}
 		});

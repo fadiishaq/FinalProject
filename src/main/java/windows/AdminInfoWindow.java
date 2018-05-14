@@ -2,6 +2,7 @@ package windows;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,13 +10,16 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.JSeparator;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class AdminInfoWindow extends JFrame {
-
+	
+	private Dimension dl, db, center;
 	private JPanel contentPane;
 
 	/**
@@ -47,6 +51,10 @@ public class AdminInfoWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		// display window in the center
+		center = Toolkit.getDefaultToolkit().getScreenSize();
+		setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
+
 		JLabel label = new JLabel("New Admin Added!");
 		label.setFont(new Font("Tahoma", Font.BOLD, 43));
 		label.setBounds(168, 11, 571, 90);
@@ -64,13 +72,15 @@ public class AdminInfoWindow extends JFrame {
 		age.setBounds(37, 195, 490, 29);
 		contentPane.add(age);
 
-		JLabel street = new JLabel("Street: " + LoginPageWindow.getAdminsList().get(index).getAddress().getStreetName());
+		JLabel street = new JLabel(
+				"Street: " + LoginPageWindow.getAdminsList().get(index).getAddress().getStreetName());
 		street.setForeground(Color.BLACK);
 		street.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
 		street.setBounds(36, 259, 490, 29);
 		contentPane.add(street);
 
-		JLabel house = new JLabel("House Num: " + LoginPageWindow.getAdminsList().get(index).getAddress().getHouseNumber());
+		JLabel house = new JLabel(
+				"House Num: " + LoginPageWindow.getAdminsList().get(index).getAddress().getHouseNumber());
 		house.setForeground(Color.BLACK);
 		house.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
 		house.setBounds(37, 311, 490, 29);
@@ -102,11 +112,11 @@ public class AdminInfoWindow extends JFrame {
 		});
 		btnOkay.setBounds(208, 454, 455, 54);
 		contentPane.add(btnOkay);
-		
+
 		JButton btnEditupdate = new JButton("Edit / Update");
 		btnEditupdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				EditAdminWindow win = new EditAdminWindow(index);
 				win.show();
 			}
@@ -115,7 +125,6 @@ public class AdminInfoWindow extends JFrame {
 		contentPane.add(btnEditupdate);
 
 	}
-	
 
 	public AdminInfoWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -184,11 +193,11 @@ public class AdminInfoWindow extends JFrame {
 		});
 		btnOkay.setBounds(564, 454, 272, 54);
 		contentPane.add(btnOkay);
-		
+
 		JButton btnEditupdate = new JButton("Edit / Update");
 		btnEditupdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 			}
 		});
 		btnEditupdate.setBounds(56, 452, 253, 56);

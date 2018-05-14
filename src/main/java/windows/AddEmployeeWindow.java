@@ -23,12 +23,18 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
+
 import javax.swing.UIManager;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+
 import javax.swing.Box;
 
 public class AddEmployeeWindow extends JFrame {
+
+	private Dimension dl, db, center;
 
 	private JPanel contentPane;
 	private JTextField name;
@@ -38,18 +44,15 @@ public class AddEmployeeWindow extends JFrame {
 	private JTextField house;
 	private JTextField city;
 
-	//private static ArrayList<Employee> employees = LoginPageWindow.getEmployeesList();
+	// private static ArrayList<Employee> employees =
+	// LoginPageWindow.getEmployeesList();
 
-
-
-
-/*	public static ArrayList<Employee> getEmployees() {
-		return employees;
-	}
-
-	public static void setEmployees(ArrayList<Employee> employees) {
-		AddEmployeeWindow.employees = employees;
-	}*/
+	/*
+	 * public static ArrayList<Employee> getEmployees() { return employees; }
+	 * 
+	 * public static void setEmployees(ArrayList<Employee> employees) {
+	 * AddEmployeeWindow.employees = employees; }
+	 */
 
 	/**
 	 * Launch the application.
@@ -74,12 +77,18 @@ public class AddEmployeeWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public AddEmployeeWindow() {
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 622, 790);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		
+		// display window in the center
+		center = Toolkit.getDefaultToolkit().getScreenSize();
+		setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
 
 		JLabel lblAddEmployee = new JLabel("Add Employee");
 		lblAddEmployee.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 49));
@@ -147,16 +156,18 @@ public class AddEmployeeWindow extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				try {
-					
+
 					Employee employee = new Employee(name.getText(), Integer.parseInt(age.getText()), street.getText(),
-							house.getText(), city.getText(), Integer.parseInt(salary.getText()));
+							house.getText(), city.getText(), Integer.parseInt(salary.getText()),
+							LoginPageWindow.getEmployeesList().size() - 1);
 
 					LoginPageWindow.getEmployeesList().add(employee);
-					
-					EmployeeInfoWindow employeeInfo = new EmployeeInfoWindow(LoginPageWindow.getEmployeesList().size() - 1, false);
+
+					EmployeeInfoWindow employeeInfo = new EmployeeInfoWindow(
+							LoginPageWindow.getEmployeesList().size() - 1, false);
 					setVisible(false);
 					employeeInfo.setVisible(true);
-					
+
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, "Wrong input!");
 				}
@@ -189,16 +200,14 @@ public class AddEmployeeWindow extends JFrame {
 		city.setColumns(10);
 		city.setBounds(243, 474, 248, 38);
 		contentPane.add(city);
-		
+
 		JButton btnBack_1 = new JButton("Back");
 		btnBack_1.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 15));
 		btnBack_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				AddPersonWindow win = new AddPersonWindow();
+
 				setVisible(false);
-				win.setVisible(true);
-				
+
 			}
 		});
 		btnBack_1.setBounds(42, 655, 81, 67);

@@ -50,10 +50,12 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Window.Type;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.Component;
 import javax.swing.Box;
 
 public class PersonManagerWindow extends JFrame {
+	 private Dimension dl, db, center; 
 
 	private JPanel contentPane;
 	private static ArrayList<String> jsonStrings = new ArrayList();
@@ -86,6 +88,11 @@ public class PersonManagerWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+			// display window in the center
+			center = Toolkit.getDefaultToolkit().getScreenSize();
+			setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
+
 
 		JButton addPersonButton = new JButton("Add Person");
 		addPersonButton.setBackground(new Color(255, 248, 220));
@@ -144,10 +151,6 @@ public class PersonManagerWindow extends JFrame {
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-//				File file1 = new File("D:\\java-oxygen\\eclipse\\projects\\FinalProjectMaven\\admins.txt");
-//				File file2 = new File("D:\\java-oxygen\\eclipse\\projects\\FinalProjectMaven\\employees.txt");
-//				File file3 = new File("D:\\java-oxygen\\eclipse\\projects\\FinalProjectMaven\\students.txt");
-
 				File file1 = new File("admins.txt");
 				File file2 = new File("employees.txt");
 				File file3 = new File("students.txt");
@@ -181,7 +184,7 @@ public class PersonManagerWindow extends JFrame {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
-				// PRIUNTWRITER
+				// PRINTWRITER
 
 				try {
 					Scanner scanner1 = new Scanner(file1);
@@ -202,10 +205,6 @@ public class PersonManagerWindow extends JFrame {
 				String jsonString2 = null;
 				String jsonString3 = null;
 
-				// ArrayList<String> jsonStrings = new ArrayList();
-				jsonStrings.add(jsonString1);
-				jsonStrings.add(jsonString2);
-				jsonStrings.add(jsonString3);
 
 				try {
 					if (LoginPageWindow.getAdminsList() != null)
@@ -220,7 +219,6 @@ public class PersonManagerWindow extends JFrame {
 				} catch (JsonProcessingException e) {
 					e.printStackTrace();
 				}
-				printWriter1.write(jsonString1);
 
 				printWriter1.print(jsonString1);
 				printWriter2.print(jsonString2);

@@ -12,8 +12,8 @@ public class Administator extends Person {
 	}
 
 	public Administator(String name, int age, String streetName, String houseNumber, String city, String username,
-			String password) {
-		super(name, age, new Address(streetName, houseNumber, city));
+			String password, int num) {
+		super(name, age, new Address(streetName, houseNumber, city), num);
 		this.username = username;
 		this.password = password;
 	}
