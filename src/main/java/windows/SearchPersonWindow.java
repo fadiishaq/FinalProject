@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import javafx.beans.binding.When;
 import personClasses.*;
 
 import javax.swing.JLabel;
@@ -26,9 +27,10 @@ public class SearchPersonWindow extends JFrame {
 
 	private static JPanel contentPane;
 	private JTextField name;
-	ArrayList<Student> studentsFound;
-	ArrayList<Employee> employeesFound;
-	ArrayList<Administator> adminsFound;
+	private ArrayList<Student> studentsFound = new ArrayList();
+	private static ArrayList<Employee> employeesFound = new ArrayList();
+	private ArrayList<Administator> adminsFound = new ArrayList();
+	ArrayList<JFrame> windowsList = new ArrayList();
 	JLabel PeopleFoundLabel;
 	JLabel nPeopleFound;
 	int count;
@@ -59,18 +61,19 @@ public class SearchPersonWindow extends JFrame {
 	JCheckBox unlimitedBox;
 	private JTextField numOfPeople;
 	private JTextField numOfPersons;
+	static ArrayList<Person> persons;
 
 	public SearchPersonWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 952, 592);
+		setBounds(100, 100, 744, 551);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Search Person");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 33));
-		lblNewLabel.setBounds(236, 11, 488, 79);
+		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 47));
+		lblNewLabel.setBounds(188, 11, 453, 79);
 		contentPane.add(lblNewLabel);
 
 		JLabel lblEnterNameTo = new JLabel("Enter name to search");
@@ -103,19 +106,91 @@ public class SearchPersonWindow extends JFrame {
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				if ((employeeBox.isSelected() && studentBox.isSelected()) || unlimitedBox.isSelected())
+				Thread thread1 = new Thread();
+
+				if ((employeeBox.isSelected() || studentBox.isSelected()) && unlimitedBox.isSelected())
 					JOptionPane.showMessageDialog(null, "Please check one box only");
 
-				if (employeeBox.isSelected()) {
-					employeesFound = findEmployees(AddEmployeeWindow.getEmployees(), name.getText());
+				else if ((employeeBox.isSelected() && studentBox.isSelected()) && unlimitedBox.isSelected())
+					JOptionPane.showMessageDialog(null, "Please check one box only");
 
-					if (employeesFound == null) {
-						JOptionPane.showMessageDialog(null, "no employees found");
+				else if (employeeBox.isSelected()) {
+					if (employeesFound.size() > 0)
+						employeesFound.clear();
+
+					employeesFound = findEmployees(LoginPageWindow.getEmployeesList(), name.getText());
+
+					if (employeesFound != null) {
+
+
+					}
+
+					for (int i = 0; i < employeesFound.size(); i++) {
+
+						EmployeeInfoWindow win = new EmployeeInfoWindow(i, true);
+						windowsList.add(win);
+						win.setVisible(true);
+
+					}
+					/*
+					 * // createTextField(employeesFound.size()); // createResult(employeesFound);
+					 * 
+					 * ArrayList<JFrame> windowsList = new ArrayList();
+					 * 
+					 * for (int i = 0; i < employeesFound.size(); i++) {
+					 * 
+					 * EmployeeInfoWindow win = new EmployeeInfoWindow(i, false);
+					 * windowsList.add(win);
+					 * 
+					 * }
+					 * 
+					 * for (JFrame win : windowsList) {
+					 * 
+					 * win.setVisible(true);
+					 * 
+					 * 
+					 * }
+					 * 
+					 * }
+					 * 
+					 * else {
+					 * 
+					 * JOptionPane.showMessageDialog(null, "no employees found");
+					 * 
+					 * }
+					 */
+
+				}
+
+				else if (studentBox.isSelected()) {
+
+					if (studentsFound.size() > 0)
+						studentsFound.clear();
+
+					studentsFound = findStudents(LoginPageWindow.getStudentsList(), name.getText());
+
+					if (studentsFound == null) {
+						JOptionPane.showMessageDialog(null, "no students found");
 					}
 
 					else {
-						createTextField();
-						createResult();
+						createTextField(studentsFound.size());
+						createResult2(studentsFound);
+
+					}
+
+				}
+
+				else if (unlimitedBox.isSelected()) {
+					ArrayList<Person> persons = searchAll(LoginPageWindow.getEmployeesList(),
+							LoginPageWindow.getStudentsList());
+
+					if (persons.size() < 1)
+						JOptionPane.showMessageDialog(null, "no results found");
+
+					else {
+						createTextField(persons.size());
+						createResult3();
 
 					}
 
@@ -138,12 +213,15 @@ public class SearchPersonWindow extends JFrame {
 
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
 				PersonManagerWindow personManagerWindow = new PersonManagerWindow();
+				setVisible(false);
 				personManagerWindow.setVisible(true);
 			}
+
 		});
-		btnNewButton.setBounds(10, 495, 118, 47);
+		btnNewButton.setBounds(10, 454, 118, 47);
 		contentPane.add(btnNewButton);
 
 	}
@@ -151,6 +229,7 @@ public class SearchPersonWindow extends JFrame {
 	public static ArrayList<Employee> findEmployees(ArrayList<Employee> employees, String name) {
 
 		ArrayList<Employee> foundEmployees = new ArrayList();
+		foundEmployees.clear();
 
 		for (Employee employee : employees) {
 			if (employee.getName().equalsIgnoreCase(name)) {
@@ -168,6 +247,7 @@ public class SearchPersonWindow extends JFrame {
 	public static ArrayList<Student> findStudents(ArrayList<Student> students, String name) {
 
 		ArrayList<Student> foundStudents = new ArrayList();
+		foundStudents.clear();
 
 		for (Student student : students) {
 			if (student.getName().equals(name)) {
@@ -182,8 +262,8 @@ public class SearchPersonWindow extends JFrame {
 			return null;
 	}
 
-	public static void createTextField() {
-		JTextField textField = new JTextField(AddEmployeeWindow.getEmployees().size() + " employees found");
+	public static void createTextField(int numOfResults) {
+		JTextField textField = new JTextField(numOfResults + " results found");
 		textField.setBounds(615, 153, 246, 40);
 		contentPane.add(textField);
 		textField.setColumns(10);
@@ -191,14 +271,15 @@ public class SearchPersonWindow extends JFrame {
 
 	}
 
-	public static void createResult() {
+	public static void createResult(final ArrayList<Employee> foundEmployees) {
 		JButton btnResults = new JButton("Results");
 		btnResults.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int i = 40;
-				int x =0;
-				for (Employee employee : AddEmployeeWindow.getEmployees()) {
-					createInfoButtons(i, x);
+				int x = 0;
+
+				for (Employee employee : foundEmployees) {
+					createEmployeeInfoButton(i, x);
 					i += 150;
 					x++;
 				}
@@ -210,13 +291,57 @@ public class SearchPersonWindow extends JFrame {
 		contentPane.repaint();
 	}
 
-	public static void createInfoButtons(int i, final int count) {
+	public static void createResult2(final ArrayList<Student> foundStudents) {
+		JButton btnResults = new JButton("Results");
+		btnResults.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int i = 40;
+				int x = 0;
+				for (Student student : foundStudents) {
+					createStudentInfoButtons(i, x);
+					i += 150;
+					x++;
+				}
+
+			}
+		});
+		btnResults.setBounds(412, 269, 208, 79);
+		contentPane.add(btnResults);
+		contentPane.repaint();
+	}
+
+	public static void createResult3() {
+		JButton btnResults = new JButton("Results");
+		btnResults.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int i = 40;
+				int x = 0;
+				for (Person person : persons) {
+					if (person instanceof Employee) {
+						createEmployeeInfoButton(i, x);
+
+					} else if (person instanceof Student) {
+						createStudentInfoButtons(i, x);
+					}
+
+					i += 150;
+					x++;
+				}
+
+			}
+		});
+		btnResults.setBounds(412, 269, 208, 79);
+		contentPane.add(btnResults);
+		contentPane.repaint();
+	}
+
+	public static void createEmployeeInfoButton(int i, final int count) {
 		JButton btnEmployee = new JButton("employee " + (count + 1));
 		btnEmployee.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 
-				EmployeeInfoWindow info = new EmployeeInfoWindow(count);
+				EmployeeInfoWindow info = new EmployeeInfoWindow(count, false);
 
 				info.setVisible(true);
 
@@ -228,5 +353,65 @@ public class SearchPersonWindow extends JFrame {
 		contentPane.repaint();
 
 	}
+
+	public static void createStudentInfoButtons(int i, final int count) {
+		JButton btnEmployee = new JButton("student " + (count + 1));
+		btnEmployee.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+
+				StudentInfoWindow info = new StudentInfoWindow(count);
+
+				info.setVisible(true);
+
+			}
+
+		});
+		btnEmployee.setBounds(i, 400, 109, 39);
+		contentPane.add(btnEmployee);
+		contentPane.repaint();
+
+	}
+
+	public static ArrayList<Person> searchAll(ArrayList<Employee> employees, ArrayList<Student> students) {
+
+		persons = new ArrayList();
+
+		/*
+		 * for (int i = 0; (i < employees.size() + students.size() - 1); i++) {
+		 * if(employees.get(i) != null) persons.add(employees.get(i));
+		 * 
+		 * if(students.get(i) != null) persons.add(students.get(i));
+		 * 
+		 * if(students.get(i) == null && employees.get(i) == null) { break; } }
+		 */
+
+		for (Employee employee : LoginPageWindow.getEmployeesList()) {
+			if (employee != null)
+				persons.add(employee);
+
+		}
+		for (Student student : LoginPageWindow.getStudentsList()) {
+			if (student != null)
+				persons.add(student);
+
+		}
+		return persons;
+	}
+
+	public ArrayList<Student> getStudentsFound() {
+		return studentsFound;
+	}
+
+
+	public static ArrayList<Employee> getEmployeesFound() {
+		return employeesFound;
+	}
+
+
+	public ArrayList<Administator> getAdminsFound() {
+		return adminsFound;
+	}
+
 
 }

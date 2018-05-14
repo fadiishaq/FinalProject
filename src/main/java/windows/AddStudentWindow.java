@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class AddStudentWindow extends JFrame {
 
@@ -28,32 +29,12 @@ public class AddStudentWindow extends JFrame {
 	private JTextField name;
 	private JTextField age;
 	private JTextField street;
-	private JTextField grade;
 	private JTextField house;
 	private JTextField city;
+	private JTextField grade;
 
-	private static ArrayList<Student> students = new ArrayList<Student>();
-	private static int numOfStudents = 0;
 
-	public static void addNumOfStudents() {
-		numOfStudents++;
-	}
 
-	public static int getNumOfStudents() {
-		return numOfStudents;
-	}
-
-	public static void setNumOfEmployees(int numOfEmployees) {
-		AddStudentWindow.numOfStudents = numOfStudents;
-	}
-
-	public static ArrayList<Student> getStudents() {
-		return students;
-	}
-
-	public static void setEmployees(ArrayList<Employee> employees) {
-		AddStudentWindow.students = students;
-	}
 
 	/**
 	 * Launch the application.
@@ -77,80 +58,44 @@ public class AddStudentWindow extends JFrame {
 	 */
 	public AddStudentWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 820, 654);
+		setBounds(100, 100, 580, 790);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JLabel lblAddEmployee = new JLabel("Add Student");
-		lblAddEmployee.setFont(new Font("Tahoma", Font.BOLD, 71));
-		lblAddEmployee.setBounds(155, 11, 569, 73);
+		lblAddEmployee.setFont(new Font("SansSerif", Font.BOLD, 48));
+		lblAddEmployee.setBounds(125, 32, 371, 73);
 		contentPane.add(lblAddEmployee);
-
-		JLabel lblName = new JLabel("Name");
-		lblName.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblName.setBounds(33, 156, 95, 49);
-		contentPane.add(lblName);
-
-		JLabel lblAge = new JLabel("Age");
-		lblAge.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblAge.setBounds(33, 263, 152, 78);
-		contentPane.add(lblAge);
-
-		JLabel lblAddress = new JLabel("Street");
-		lblAddress.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblAddress.setBounds(33, 388, 152, 78);
-		contentPane.add(lblAddress);
-
-		JLabel lblGrade = new JLabel("Grade");
-		lblGrade.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblGrade.setBounds(441, 394, 81, 78);
-		contentPane.add(lblGrade);
 
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-			AddPersonWindow addPersonWindow = new AddPersonWindow();
-			addPersonWindow.setVisible(true);
+
+				AddPersonWindow addPersonWindow = new AddPersonWindow();
+				setVisible(false);
+				addPersonWindow.setVisible(true);
 			}
 		});
-		btnBack.setBounds(719, 566, 75, 38);
+		btnBack.setBounds(48, 642, 81, 80);
 		contentPane.add(btnBack);
 
-		name = new JTextField();
-		name.setBounds(138, 155, 248, 58);
-		contentPane.add(name);
-		name.setColumns(10);
-
-		age = new JTextField();
-		age.setColumns(10);
-		age.setBounds(138, 277, 248, 58);
-		contentPane.add(age);
-
-		street = new JTextField();
-		street.setColumns(10);
-		street.setBounds(138, 402, 248, 58);
-		contentPane.add(street);
-
-		grade = new JTextField();
-		grade.setColumns(10);
-		grade.setBounds(546, 408, 248, 58);
-		contentPane.add(grade);
-
 		JButton btnAddEmployee = new JButton("Add Student");
+		btnAddEmployee.setBackground(Color.LIGHT_GRAY);
 		btnAddEmployee.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				try {
+
 					Student student = new Student(name.getText(), Integer.parseInt(age.getText()), street.getText(),
 							house.getText(), city.getText(), Integer.parseInt(grade.getText()));
 
-					students.add(student);
-					addNumOfStudents();
-					StudentInfoWindow studentInfoWindow = new StudentInfoWindow(getNumOfStudents()-1);
+					LoginPageWindow.getStudentsList().add(student);
+					StudentInfoWindow studentInfoWindow = new StudentInfoWindow(LoginPageWindow.getStudentsList().size() - 1);
+					setVisible(false);
 					studentInfoWindow.setVisible(true);
+
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, "Wrong input!");
 				}
@@ -159,28 +104,73 @@ public class AddStudentWindow extends JFrame {
 
 		});
 		btnAddEmployee.setFont(new Font("Tahoma", Font.BOLD, 24));
-		btnAddEmployee.setBounds(290, 518, 258, 58);
+		btnAddEmployee.setBounds(155, 638, 341, 84);
 		contentPane.add(btnAddEmployee);
-
-		JLabel lblHouseNum = new JLabel("House Num");
-		lblHouseNum.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblHouseNum.setBounds(406, 146, 152, 78);
-		contentPane.add(lblHouseNum);
-
+		
+		JLabel label = new JLabel("Name");
+		label.setFont(new Font("Tahoma", Font.BOLD, 20));
+		label.setBounds(105, 133, 95, 49);
+		contentPane.add(label);
+		
+		name = new JTextField();
+		name.setColumns(10);
+		name.setBackground(Color.WHITE);
+		name.setBounds(210, 142, 248, 38);
+		contentPane.add(name);
+		
+		JLabel label_1 = new JLabel("Age");
+		label_1.setFont(new Font("Tahoma", Font.BOLD, 20));
+		label_1.setBounds(105, 209, 95, 52);
+		contentPane.add(label_1);
+		
+		age = new JTextField();
+		age.setColumns(10);
+		age.setBackground(Color.WHITE);
+		age.setBounds(210, 220, 248, 38);
+		contentPane.add(age);
+		
+		JLabel label_2 = new JLabel("Street");
+		label_2.setFont(new Font("Tahoma", Font.BOLD, 20));
+		label_2.setBounds(105, 291, 95, 52);
+		contentPane.add(label_2);
+		
+		street = new JTextField();
+		street.setColumns(10);
+		street.setBackground(Color.WHITE);
+		street.setBounds(210, 302, 248, 38);
+		contentPane.add(street);
+		
+		JLabel label_3 = new JLabel("House Number");
+		label_3.setFont(new Font("Tahoma", Font.BOLD, 20));
+		label_3.setBounds(48, 369, 152, 52);
+		contentPane.add(label_3);
+		
 		house = new JTextField();
 		house.setColumns(10);
-		house.setBounds(546, 160, 248, 58);
+		house.setBackground(Color.WHITE);
+		house.setBounds(210, 380, 248, 38);
 		contentPane.add(house);
-
-		JLabel lblCity = new JLabel("City");
-		lblCity.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblCity.setBounds(441, 263, 152, 78);
-		contentPane.add(lblCity);
-
+		
+		JLabel label_4 = new JLabel("City");
+		label_4.setFont(new Font("Tahoma", Font.BOLD, 20));
+		label_4.setBounds(119, 447, 81, 49);
+		contentPane.add(label_4);
+		
 		city = new JTextField();
 		city.setColumns(10);
-		city.setBounds(546, 277, 248, 58);
+		city.setBackground(Color.WHITE);
+		city.setBounds(210, 456, 248, 38);
 		contentPane.add(city);
+		
+		JLabel gradesss = new JLabel("Grade");
+		gradesss.setFont(new Font("Tahoma", Font.BOLD, 20));
+		gradesss.setBounds(105, 522, 95, 49);
+		contentPane.add(gradesss);
+		
+		grade = new JTextField();
+		grade.setColumns(10);
+		grade.setBackground(Color.WHITE);
+		grade.setBounds(210, 535, 248, 38);
+		contentPane.add(grade);
 	}
-
 }

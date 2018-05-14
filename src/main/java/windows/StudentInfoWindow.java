@@ -13,6 +13,7 @@ import javax.swing.JSeparator;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class StudentInfoWindow extends JFrame {
 
@@ -52,39 +53,39 @@ public class StudentInfoWindow extends JFrame {
 		label.setBounds(168, 11, 571, 90);
 		contentPane.add(label);
 
-		JLabel name = new JLabel("Name: " + AddStudentWindow.getStudents().get(index).getName());
+		JLabel name = new JLabel("Name: " + LoginPageWindow.getStudentsList().get(index).getName());
 		name.setForeground(Color.BLACK);
 		name.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
 		name.setBounds(37, 122, 515, 45);
 		contentPane.add(name);
 
-		JLabel age = new JLabel("Age: " + AddStudentWindow.getStudents().get(index).getAge());
+		JLabel age = new JLabel("Age: " + LoginPageWindow.getStudentsList().get(index).getAge());
 		age.setForeground(Color.BLACK);
 		age.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
 		age.setBounds(37, 195, 490, 29);
 		contentPane.add(age);
 
 		JLabel street = new JLabel(
-				"Street: " + AddStudentWindow.getStudents().get(index).getAddress().getStreetName());
+				"Street: " + LoginPageWindow.getStudentsList().get(index).getAddress().getStreetName());
 		street.setForeground(Color.BLACK);
 		street.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
 		street.setBounds(36, 259, 490, 29);
 		contentPane.add(street);
 
 		JLabel house = new JLabel(
-				"House Num: " + AddStudentWindow.getStudents().get(index).getAddress().getHouseNumber());
+				"House Num: " + LoginPageWindow.getStudentsList().get(index).getAddress().getHouseNumber());
 		house.setForeground(Color.BLACK);
 		house.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
 		house.setBounds(37, 311, 490, 29);
 		contentPane.add(house);
 
-		JLabel city = new JLabel("City: " + AddStudentWindow.getStudents().get(index).getAddress().getCity());
+		JLabel city = new JLabel("City: " + LoginPageWindow.getStudentsList().get(index).getAddress().getCity());
 		city.setForeground(Color.BLACK);
 		city.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
 		city.setBounds(52, 372, 490, 29);
 		contentPane.add(city);
 
-		JLabel salary = new JLabel("Salary: " + AddStudentWindow.getStudents().get(index).getGrade());
+		JLabel salary = new JLabel("Salary: " + LoginPageWindow.getStudentsList().get(index).getGrade());
 		salary.setForeground(Color.BLACK);
 		salary.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
 		salary.setBounds(52, 431, 490, 29);
@@ -93,8 +94,7 @@ public class StudentInfoWindow extends JFrame {
 		JButton btnOkay = new JButton("OKAY");
 		btnOkay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddPersonWindow addPersonWindow = new AddPersonWindow();
-				addPersonWindow.setVisible(true);
+				CloseJframe();
 			}
 		});
 		btnOkay.setBounds(208, 454, 455, 54);
@@ -102,7 +102,7 @@ public class StudentInfoWindow extends JFrame {
 		
 		
 
-	}
+	} // ------------------------------------------------------------------------------------
 
 	public StudentInfoWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -112,76 +112,61 @@ public class StudentInfoWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblNewStudentAdded = new JLabel("Student");
-		lblNewStudentAdded.setFont(new Font("Tahoma", Font.BOLD, 43));
-		lblNewStudentAdded.setBounds(168, 11, 571, 90);
-		contentPane.add(lblNewStudentAdded);
+		JLabel label = new JLabel("Student");
+		label.setFont(new Font("Tahoma", Font.BOLD, 43));
+		label.setBounds(168, 11, 571, 90);
+		contentPane.add(label);
 
-		JLabel name = new JLabel("Name: " );
+		JLabel name = new JLabel("Name: ");
 		name.setForeground(Color.BLACK);
 		name.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
-		name.setBounds(156, 94, 515, 45);
+		name.setBounds(37, 122, 515, 45);
 		contentPane.add(name);
 
-		JLabel age = new JLabel("Age: 0");
+		JLabel age = new JLabel("Age: " );
 		age.setForeground(Color.BLACK);
 		age.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
-		age.setBounds(156, 167, 490, 29);
+		age.setBounds(37, 195, 490, 29);
 		contentPane.add(age);
 
-		JLabel street = new JLabel("Street: <dynamic>");
+		JLabel street = new JLabel(
+				"Street: ");
 		street.setForeground(Color.BLACK);
 		street.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
-		street.setBounds(155, 231, 490, 29);
+		street.setBounds(36, 259, 490, 29);
 		contentPane.add(street);
 
-		JLabel house = new JLabel("House Num: <dynamic>");
+		JLabel house = new JLabel(
+				"House Num: ");
 		house.setForeground(Color.BLACK);
 		house.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
-		house.setBounds(156, 283, 490, 29);
+		house.setBounds(37, 311, 490, 29);
 		contentPane.add(house);
 
-		JLabel city = new JLabel("City: <dynamic>");
+		JLabel city = new JLabel("City: ");
 		city.setForeground(Color.BLACK);
 		city.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
-		city.setBounds(171, 344, 490, 29);
+		city.setBounds(52, 372, 490, 29);
 		contentPane.add(city);
 
-		JLabel salary = new JLabel("Salary: 0");
+		JLabel salary = new JLabel("Salary: ");
 		salary.setForeground(Color.BLACK);
 		salary.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
-		salary.setBounds(171, 403, 490, 29);
+		salary.setBounds(52, 431, 490, 29);
 		contentPane.add(salary);
-
-		JSeparator separator = new JSeparator();
-		separator.setBounds(141, 139, 500, 15);
-		contentPane.add(separator);
-
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(98, 207, 500, 15);
-		contentPane.add(separator_1);
-
-		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(77, 271, 500, 15);
-		contentPane.add(separator_2);
-
-		JSeparator separator_3 = new JSeparator();
-		separator_3.setBounds(77, 318, 500, 15);
-		contentPane.add(separator_3);
-
-		JSeparator separator_4 = new JSeparator();
-		separator_4.setBounds(77, 384, 500, 15);
-		contentPane.add(separator_4);
 		
 		JButton btnOkay = new JButton("OKAY");
 		btnOkay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddPersonWindow addPersonWindow = new AddPersonWindow();
-				addPersonWindow.setVisible(true);
+				CloseJframe();
 			}
 		});
 		btnOkay.setBounds(208, 454, 455, 54);
 		contentPane.add(btnOkay);
+		
 
+	}
+	public void CloseJframe(){
+	    super.dispose();
 	}
 }

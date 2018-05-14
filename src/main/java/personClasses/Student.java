@@ -9,6 +9,10 @@ public class Student extends Person{
 
 	
 	
+	public Student() {
+		super();
+	}
+
 	public Student(String name, int age, String streetName, String houseNumber, String city, int grade) {
 		super(name, age, new Address(streetName, houseNumber, city));
 		this.grade = grade;
