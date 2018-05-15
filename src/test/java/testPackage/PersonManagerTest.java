@@ -14,8 +14,7 @@ public class PersonManagerTest {
 
 	public static void main(String[] args) {
 
-		LoginPageWindow l = new LoginPageWindow();
-		l.setVisible(true);
+		LoginPageWindow.main(args);
 
 	}
 

@@ -54,7 +54,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
 
 public class LoginPageWindow extends JFrame {
-	 private Dimension dl, db, center; 
+	private Dimension dl, db, center;
 
 	private static File file1 = new File("admins.txt");
 	private static File file2 = new File("employees.txt");
@@ -82,6 +82,17 @@ public class LoginPageWindow extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					LoginPageWindow frame = new LoginPageWindow();
+					frame.setVisible(true);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 
 		try {
 
@@ -89,62 +100,47 @@ public class LoginPageWindow extends JFrame {
 			scanner2 = new Scanner(file2);
 			scanner3 = new Scanner(file3);
 
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		}
-
-		if (file1.exists()) {
-			if (scanner1.hasNextLine()) {
-
-				try {
+			if (file1.exists() && file1.length() != 0) {
+				if (scanner1.hasNextLine()) {
 
 					adminsList = om1.readValue(file1, new TypeReference<ArrayList<Administator>>() {
 					});
 
+					System.out.println(adminsList);
+
 					scanner1.close();
-
-				} catch (JsonParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (JsonMappingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
-
-				/*
-				 * try { adminsList = om1.readValue(scanner1.nextLine(), new
-				 * TypeReference<ArrayList<Administator>>() { });
-				 * System.out.println(adminsList);
-				 * 
-				 * } catch (Exception e) { // TODO Auto-generated catch block
-				 * e.printStackTrace(); }
-				 */
-
 			}
+		} catch (JsonParseException e) {
+			System.out.println("Parsing exception");
+
+		} catch (JsonMappingException e) {
+			System.out.println("Json mapping exception");
+
+		} catch (IOException e) {
+			System.out.println("Admin file doesn't exist exception");
+
 		}
 
-		if (file2.exists()) {
+		if (file2.exists() && file1.length() != 0) {
 			if (scanner2.hasNextLine()) {
 
 				try {
 
-					employeesList = om2.readValue(scanner2.nextLine(), new TypeReference<ArrayList<Employee>>() {
-
+					employeesList = om2.readValue(file2, new TypeReference<ArrayList<Employee>>() {
 					});
-				} catch (JsonParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (JsonMappingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+					System.out.println(employeesList);
 
+				} catch (JsonParseException e) {
+					System.out.println("Parsing exception");
+
+				} catch (JsonMappingException e) {
+					System.out.println("Json mapping exception");
+
+				} catch (IOException e) {
+					System.out.println("Employee file doesn't exist exception");
+
+				}
 				/*
 				 * try { employeesList = om2.readValue(scanner2.nextLine(), new
 				 * TypeReference<ArrayList<Employee>>() { }); System.out.println(employeesList);
@@ -155,42 +151,28 @@ public class LoginPageWindow extends JFrame {
 			}
 		}
 
-		if (file3.exists()) {
+		if (file3.exists() && file1.length() != 0) {
 			if (scanner3.hasNextLine()) {
-
 				try {
-					studentsList = om3.readValue(scanner3.nextLine(), new TypeReference<ArrayList<Student>>() {
-					});
-				} catch (JsonParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (JsonMappingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 
-				/*
-				 * try { studentsList = om3.readValue(scanner3.nextLine(), new
-				 * TypeReference<ArrayList<Student>>() { }); System.out.println(studentsList);
-				 * scanner3.close(); } catch (Exception e) { e.printStackTrace(); }
-				 */
+					studentsList = om3.readValue(file3, new TypeReference<ArrayList<Student>>() {
+					});
+					System.out.println(studentsList);
+
+				} catch (JsonParseException e) {
+					System.out.println("Parsing exception");
+
+				} catch (JsonMappingException e) {
+					System.out.println("Json mapping exception");
+
+				} catch (IOException e) {
+					System.out.println("Student file doesn't exist exception");
+
+				}
 
 			}
 		}
 
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginPageWindow frame = new LoginPageWindow();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
 	}
 
 	/**
@@ -203,11 +185,10 @@ public class LoginPageWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-			// display window in the center
-			center = Toolkit.getDefaultToolkit().getScreenSize();
-			setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
 
+		// display window in the center
+		center = Toolkit.getDefaultToolkit().getScreenSize();
+		setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
 
 		JLabel nameLabel = new JLabel("Username");
 		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 28));

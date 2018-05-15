@@ -24,10 +24,11 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JEditorPane;
 
 public class SearchPersonWindow extends JFrame {
 
-	 private Dimension dl, db, center; 
+	private Dimension dl, db, center;
 
 	private static JPanel contentPane;
 	private JTextField name;
@@ -74,11 +75,10 @@ public class SearchPersonWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-			// display window in the center
-			center = Toolkit.getDefaultToolkit().getScreenSize();
-			setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
 
+		// display window in the center
+		center = Toolkit.getDefaultToolkit().getScreenSize();
+		setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
 
 		JLabel lblNewLabel = new JLabel("Search Person");
 		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 47));
@@ -122,22 +122,32 @@ public class SearchPersonWindow extends JFrame {
 					JOptionPane.showMessageDialog(null, "Please check one box only");
 
 				else if (employeeBox.isSelected()) {
+
 					if (employeesFound.size() > 0)
 						employeesFound.clear();
 
 					employeesFound = findEmployees(LoginPageWindow.getEmployeesList(), name.getText());
 
-					if (employeesFound != null) {
+					if (employeesFound.size() > 0) {
 
-					} 
+						if (employeesFound.size() == 1) {
+							EmployeeInfoWindow win = new EmployeeInfoWindow(0, false);
+							win.setVisible(true);
+						}
 
-					for (int i = 0; i < employeesFound.size(); i++) {
-
-						EmployeeInfoWindow win = new EmployeeInfoWindow(employeesFound.get(i).getNum() + 1, false);
-						windowsList.add(win);
-						win.setVisible(true);
-
+					} else {
+						JOptionPane.showMessageDialog(null, "no employees");
 					}
+
+					/*
+					 * for (int i = 0; i < employeesFound.size(); i++) {
+					 * 
+					 * EmployeeInfoWindow win = new
+					 * EmployeeInfoWindow(employeesFound.get(i).getNum() + 1, false);
+					 * windowsList.add(win); win.setVisible(true);
+					 * 
+					 * }
+					 */
 
 				}
 
@@ -389,5 +399,4 @@ public class SearchPersonWindow extends JFrame {
 	public ArrayList<Administator> getAdminsFound() {
 		return adminsFound;
 	}
-
 }

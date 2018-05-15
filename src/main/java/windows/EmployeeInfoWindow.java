@@ -70,7 +70,7 @@ public class EmployeeInfoWindow extends JFrame {
 		label.setBounds(168, 11, 571, 90);
 		contentPane.add(label);
 
-		JLabel name = new JLabel("Name: " + LoginPageWindow.getEmployeesList().get(index).getName());
+		JLabel name = new JLabel("Name: " +LoginPageWindow.getEmployeesList().get(index).getName());
 		name.setForeground(Color.BLACK);
 		name.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
 		name.setBounds(37, 122, 515, 45);
@@ -147,7 +147,7 @@ public class EmployeeInfoWindow extends JFrame {
 
 					ArrayList<Employee> employeesFound= SearchPersonWindow.getEmployeesFound();
 					if(employeesFound.size() == 2) {
-						//EmployeeInfoWindow win2 = new EmployeeInfoWindow(index, showNextButton);
+						EmployeeInfoWindow win = new EmployeeInfoWindow(employeesFound.get(1).getIndex(), false);
 					}
 					
 				}
@@ -230,7 +230,6 @@ public class EmployeeInfoWindow extends JFrame {
 
 		JButton btnNext = new JButton("Next");
 		btnNext.addActionListener(new ActionListener() {
-			Thread thread2 = new Thread();
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 			}

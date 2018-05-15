@@ -159,7 +159,7 @@ public class AddEmployeeWindow extends JFrame {
 
 					Employee employee = new Employee(name.getText(), Integer.parseInt(age.getText()), street.getText(),
 							house.getText(), city.getText(), Integer.parseInt(salary.getText()),
-							LoginPageWindow.getEmployeesList().size() - 1);
+							LoginPageWindow.getEmployeesList().size());
 
 					LoginPageWindow.getEmployeesList().add(employee);
 

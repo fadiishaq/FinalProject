@@ -106,7 +106,7 @@ public class PersonManagerWindow extends JFrame {
 		});
 		addPersonButton.setMaximumSize(new Dimension(100, 23));
 		addPersonButton.setFont(new Font("SansSerif", Font.BOLD, 30));
-		addPersonButton.setBounds(155, 144, 443, 106);
+		addPersonButton.setBounds(163, 145, 443, 106);
 		contentPane.add(addPersonButton);
 
 		JLabel label = new JLabel("Person Manager");
@@ -128,7 +128,7 @@ public class PersonManagerWindow extends JFrame {
 		});
 		searchPersonButton.setMaximumSize(new Dimension(100, 23));
 		searchPersonButton.setFont(new Font("SansSerif", Font.BOLD, 30));
-		searchPersonButton.setBounds(155, 261, 443, 106);
+		searchPersonButton.setBounds(163, 262, 443, 106);
 		contentPane.add(searchPersonButton);
 
 		JButton showReportButton = new JButton("Reports");
@@ -143,10 +143,10 @@ public class PersonManagerWindow extends JFrame {
 		});
 		showReportButton.setMaximumSize(new Dimension(100, 23));
 		showReportButton.setFont(new Font("SansSerif", Font.BOLD, 30));
-		showReportButton.setBounds(155, 378, 443, 106);
+		showReportButton.setBounds(163, 379, 443, 106);
 		contentPane.add(showReportButton);
 
-		JButton btnExit = new JButton("Exit");
+		JButton btnExit = new JButton("Save and Exit");
 		btnExit.setBackground(new Color(143, 188, 143));
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -269,8 +269,19 @@ public class PersonManagerWindow extends JFrame {
 			}
 		});
 		btnExit.setFont(new Font("Tahoma", Font.BOLD, 26));
-		btnExit.setBounds(163, 540, 435, 49);
+		btnExit.setBounds(484, 530, 266, 59);
 		contentPane.add(btnExit);
+		
+		JButton button = new JButton("Exit");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(1);
+			}
+		});
+		button.setFont(new Font("Tahoma", Font.BOLD, 26));
+		button.setBackground(new Color(143, 188, 143));
+		button.setBounds(52, 530, 266, 59);
+		contentPane.add(button);
 	}
 
 	public void CloseJframe() {

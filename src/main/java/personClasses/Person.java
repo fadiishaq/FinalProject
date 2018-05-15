@@ -6,18 +6,18 @@ public class Person {
 	private String name;
 	private int age;
 	private Address address;
-	private int num;
+	private int index;
 
 	public Person() {
 
 	}
 
-	public Person(String name, int age, Address address, int num) {
+	public Person(String name, int age, Address address, int index) {
 		super();
 		this.name = name;
 		this.age = age;
 		this.address = address;
-		this.num = num;
+		this.index = index;
 	}
 
 	public String getName() {
@@ -48,12 +48,12 @@ public class Person {
 		return "Name: " + this.name + "\nAge: " + this.age + "\nAddress: " + this.address;
 	}
 
-	public int getNum() {
-		return num;
+	public int getIndex() {
+		return index;
 	}
 
-	public void setNum(int num) {
-		this.num = num;
+	public void setIndex(int index) {
+		this.index = index;
 	}
 
 }
