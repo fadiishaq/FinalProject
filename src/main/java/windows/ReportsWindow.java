@@ -137,7 +137,7 @@ public class ReportsWindow extends JFrame {
 							writer.println("\tStreet Name: " +student.getAddress().getStreetName());
 							writer.println("\tHouse Number: " +student.getAddress().getHouseNumber());
 							writer.println("\tCity: " +student.getAddress().getCity());
-							writer.println("\tSalary: " +student.getGrade());							
+							writer.println("\tGrade: " +student.getGrade());							
 							
 							
 							count++;

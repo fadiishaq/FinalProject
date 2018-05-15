@@ -126,13 +126,22 @@ public class SearchPersonWindow extends JFrame {
 					if (employeesFound.size() > 0)
 						employeesFound.clear();
 
+					
 					employeesFound = findEmployees(LoginPageWindow.getEmployeesList(), name.getText());
 
 					if (employeesFound.size() > 0) {
 
 						if (employeesFound.size() == 1) {
+							
 							EmployeeInfoWindow win = new EmployeeInfoWindow(0, false);
 							win.setVisible(true);
+							
+						}
+						else if(employeesFound.size() > 1) {
+							
+							EmployeeInfoWindow win = new EmployeeInfoWindow(0, true);
+							win.setVisible(true);
+							
 						}
 
 					} else {
@@ -349,9 +358,9 @@ public class SearchPersonWindow extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 
-				StudentInfoWindow info = new StudentInfoWindow(count);
+//				StudentInfoWindow info = new StudentInfoWindow(count);
 
-				info.setVisible(true);
+//				info.setVisible(true);
 
 			}
 

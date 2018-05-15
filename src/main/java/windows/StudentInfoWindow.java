@@ -44,7 +44,7 @@ public class StudentInfoWindow extends JFrame {
 	 * Create the frame.
 	 */
 
-	public StudentInfoWindow(int index) {
+	public StudentInfoWindow(int index, boolean showNextButton) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 930, 558);
 		contentPane = new JPanel();

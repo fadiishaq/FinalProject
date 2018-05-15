@@ -237,6 +237,7 @@ public class LoginPageWindow extends JFrame {
 				if (!file1.exists() || adminsList.isEmpty()) {
 					if (username.getText().equals("admin") && password.getText().equals("admin")) {
 						PersonManagerWindow tab = new PersonManagerWindow();
+						setVisible(false);
 						tab.setVisible(true);
 					}
 
@@ -328,23 +329,13 @@ public class LoginPageWindow extends JFrame {
 		return adminsList;
 	}
 
-	public static void setAdminsList(ArrayList<Administator> adminsList) {
-		LoginPageWindow.adminsList = adminsList;
-	}
-
 	public static ArrayList<Employee> getEmployeesList() {
 		return employeesList;
 	}
 
-	public static void setEmployeesList(ArrayList<Employee> employeesList) {
-		LoginPageWindow.employeesList = employeesList;
-	}
 
 	public static ArrayList<Student> getStudentsList() {
 		return studentsList;
 	}
 
-	public static void setStudentsList(ArrayList<Student> studentsList) {
-		LoginPageWindow.studentsList = studentsList;
-	}
 }
