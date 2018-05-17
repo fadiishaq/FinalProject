@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import personClasses.Employee;
+import personClasses.Student;
+
 import javax.swing.JLabel;
 
 import java.awt.Font;
@@ -13,6 +16,7 @@ import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.security.SignatureException;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
@@ -98,9 +102,9 @@ public class StudentInfoWindow extends JFrame {
 		btnOkay.setFont(new Font("SansSerif", Font.BOLD, 21));
 		btnOkay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				setVisible(false);
-				
+
 			}
 		});
 		btnOkay.setBounds(10, 590, 179, 58);
@@ -130,7 +134,7 @@ public class StudentInfoWindow extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 
 					if (SearchPersonWindow.getStudentsFound().size() == 2) {
-						
+
 						SearchPersonWindow.studentWin1.setVisible(false);
 						SearchPersonWindow.studentWin2.setVisible(true);
 					}
@@ -144,6 +148,28 @@ public class StudentInfoWindow extends JFrame {
 
 							SearchPersonWindow.studentWin1.setVisible(false);
 							SearchPersonWindow.studentWin2.setVisible(true);
+
+						}
+
+					}
+
+					else if (SearchPersonWindow.getPersonsFound().size() == 2) {
+
+						if (SearchPersonWindow.getPersonsFound().get(1) instanceof Student) {
+
+							SearchPersonWindow.studentWin2 = new StudentInfoWindow(
+									SearchPersonWindow.getPersonsFound().get(1).getIndex(), false);
+							SearchPersonWindow.studentWin1.setVisible(false);
+							SearchPersonWindow.studentWin2.setVisible(true);
+
+						}
+
+						else if (SearchPersonWindow.getPersonsFound().get(1) instanceof Employee) {
+
+							SearchPersonWindow.employeeWin1 = new EmployeeInfoWindow(
+									SearchPersonWindow.getPersonsFound().get(1).getIndex(), false);
+							setVisible(false);
+							SearchPersonWindow.employeeWin1.setVisible(true);
 
 						}
 

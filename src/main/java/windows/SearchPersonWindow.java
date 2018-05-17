@@ -210,21 +210,22 @@ public class SearchPersonWindow extends JFrame {
 
 					personsFound = findPersons(LoginPageWindow.getEmployeesList(), LoginPageWindow.getStudentsList(),
 							name.getText());
+					
 
 					if (personsFound != null && personsFound.size() > 0) {
 
 						if (personsFound.size() == 1) {
 
 							if (personsFound.get(0) instanceof Student) {
-								
-								StudentInfoWindow win = new StudentInfoWindow(studentsFound.get(0).getIndex(), false);
-								win.setVisible(true);
-								
+
+								studentWin1 = new StudentInfoWindow(personsFound.get(0).getIndex(), false);
+								studentWin1.setVisible(true);
+
 							} else if (personsFound.get(0) instanceof Employee) {
-								
-								EmployeeInfoWindow win = new EmployeeInfoWindow(studentsFound.get(0).getIndex(), false);
-								win.setVisible(true);
-								
+
+								employeeWin1 = new EmployeeInfoWindow(personsFound.get(0).getIndex(), false);
+								employeeWin1.setVisible(true);
+
 							}
 
 						}
@@ -235,31 +236,31 @@ public class SearchPersonWindow extends JFrame {
 								studentWin1 = new StudentInfoWindow(studentsFound.get(0).getIndex(), true);
 								studentWin1.setVisible(true);
 							}
-							
+
 							else if (personsFound.get(0) instanceof Employee) {
 								employeeWin1 = new EmployeeInfoWindow(personsFound.get(0).getIndex(), true);
 								employeeWin1.setVisible(true);
 
-								}
-							
-							if(personsFound.get(1) instanceof Student) {
-								studentWin2 = new StudentInfoWindow(personsFound.get(0).getIndex(), false);
-							}
-							
-							else if(personsFound.get(1) instanceof Employee) {
-								employeeWin2 = new EmployeeInfoWindow(personsFound.get(0).getIndex(), false);
 							}
 
+							if (personsFound.get(1) instanceof Student) {
+								studentWin2 = new StudentInfoWindow(personsFound.get(0).getIndex(), false);
+							}
+
+							else if (personsFound.get(1) instanceof Employee) {
+								employeeWin2 = new EmployeeInfoWindow(personsFound.get(0).getIndex(), false);
+							}
 
 						}
 
 						else if (studentsFound.size() == 3) {
-/*
-							studentWin1 = new StudentInfoWindow(studentsFound.get(0).getIndex(), true);
-							studentWin2 = new StudentInfoWindow(studentsFound.get(1).getIndex(), true);
-							studentWin3 = new StudentInfoWindow(studentsFound.get(2).getIndex(), false);
-
-							studentWin1.setVisible(true);*/
+							/*
+							 * studentWin1 = new StudentInfoWindow(studentsFound.get(0).getIndex(), true);
+							 * studentWin2 = new StudentInfoWindow(studentsFound.get(1).getIndex(), true);
+							 * studentWin3 = new StudentInfoWindow(studentsFound.get(2).getIndex(), false);
+							 * 
+							 * studentWin1.setVisible(true);
+							 */
 						}
 
 					} else
@@ -296,11 +297,11 @@ public class SearchPersonWindow extends JFrame {
 		});
 		btnNewButton.setBounds(10, 329, 118, 47);
 		contentPane.add(btnNewButton);
-		
+
 		JSeparator separator = new JSeparator();
 		separator.setBounds(104, 114, 507, 2);
 		contentPane.add(separator);
-		
+
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(104, 316, 507, 2);
 		contentPane.add(separator_1);
@@ -418,12 +419,12 @@ public class SearchPersonWindow extends JFrame {
 	public static ArrayList<Person> findPersons(ArrayList<Employee> employees, ArrayList<Student> students,
 			String name) {
 
-		for (Employee employee : LoginPageWindow.getEmployeesList()) {
+		for (Employee employee : employees) {
 			if (employee != null && employee.getName().equals(name))
 				personsFound.add(employee);
 
 		}
-		for (Student student : LoginPageWindow.getStudentsList()) {
+		for (Student student : students) {
 			if (student != null && student.getName().equals(name))
 				personsFound.add(student);
 
