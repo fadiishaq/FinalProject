@@ -1,15 +1,11 @@
 package windows;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Toolkit;
 
 import personClasses.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import com.google.gson.JsonArray;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -17,7 +13,6 @@ import java.io.*;
 
 public class ReportsWindow extends JFrame {
 
-	 private Dimension dl, db, center; 
 
 	private JPanel contentPane;
 	private JTextField enteredSalary;
@@ -29,7 +24,6 @@ public class ReportsWindow extends JFrame {
 	 */
 	public static void main(String[] args) {
 
-		JsonArray arr = new JsonArray();
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -54,10 +48,7 @@ public class ReportsWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-			// display window in the center
-			center = Toolkit.getDefaultToolkit().getScreenSize();
-			setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
-
+		setLocationRelativeTo(null);
 		
 		enteredSalary = new JTextField();
 		enteredSalary.setBounds(355, 119, 80, 45);

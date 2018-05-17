@@ -7,10 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.fasterxml.jackson.annotation.JacksonAnnotation;
-
 import personClasses.Employee;
-import testPackage.PersonManagerTest;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,22 +16,12 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-import java.awt.Toolkit;
 
-import javax.swing.UIManager;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-
-import javax.swing.Box;
 
 public class AddEmployeeWindow extends JFrame {
-
-	private Dimension dl, db, center;
 
 	private JPanel contentPane;
 	private JTextField name;
@@ -43,16 +30,6 @@ public class AddEmployeeWindow extends JFrame {
 	private JTextField salary;
 	private JTextField house;
 	private JTextField city;
-
-	// private static ArrayList<Employee> employees =
-	// LoginPageWindow.getEmployeesList();
-
-	/*
-	 * public static ArrayList<Employee> getEmployees() { return employees; }
-	 * 
-	 * public static void setEmployees(ArrayList<Employee> employees) {
-	 * AddEmployeeWindow.employees = employees; }
-	 */
 
 	/**
 	 * Launch the application.
@@ -84,11 +61,8 @@ public class AddEmployeeWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		
-		// display window in the center
-		center = Toolkit.getDefaultToolkit().getScreenSize();
-		setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
+
+		setLocationRelativeTo(null);
 
 		JLabel lblAddEmployee = new JLabel("Add Employee");
 		lblAddEmployee.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 49));
@@ -163,7 +137,8 @@ public class AddEmployeeWindow extends JFrame {
 
 					LoginPageWindow.getEmployeesList().add(employee);
 
-					EmployeeInfoWindow win = new EmployeeInfoWindow(LoginPageWindow.getEmployeesList().size() - 1, false);
+					EmployeeInfoWindow win = new EmployeeInfoWindow(LoginPageWindow.getEmployeesList().size() - 1,
+							false);
 					setVisible(false);
 					win.setVisible(true);
 

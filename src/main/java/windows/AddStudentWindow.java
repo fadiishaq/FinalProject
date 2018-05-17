@@ -7,28 +7,21 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import personClasses.Employee;
 import personClasses.Student;
-import testPackage.PersonManagerTest;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
-import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import java.awt.event.ActionEvent;
 import java.awt.Color;
-import java.awt.Dimension;
 
 public class AddStudentWindow extends JFrame {
-
-	private Dimension dl, db, center;
 
 	private JPanel contentPane;
 	private JTextField name;
@@ -66,9 +59,7 @@ public class AddStudentWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		// display window in the center
-		center = Toolkit.getDefaultToolkit().getScreenSize();
-		setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
+		setLocationRelativeTo(null);
 
 		JLabel lblAddEmployee = new JLabel("Add Student");
 		lblAddEmployee.setFont(new Font("SansSerif", Font.BOLD, 48));

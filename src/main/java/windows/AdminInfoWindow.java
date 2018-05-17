@@ -1,36 +1,25 @@
 package windows;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import personClasses.Administator;
-import personClasses.Employee;
-
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
-import java.awt.Toolkit;
 
 import javax.swing.JSeparator;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 
 public class AdminInfoWindow extends JFrame {
-	private Dimension dl, db, center;
 
 	private JPanel contentPane;
-	private static boolean tf = false;
 
 	/**
 	 * Launch the application.
@@ -61,6 +50,8 @@ public class AdminInfoWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
+		setLocationRelativeTo(null);
 
 		JLabel label = new JLabel("Admin");
 		label.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 57));
@@ -124,12 +115,10 @@ public class AdminInfoWindow extends JFrame {
 		btnUpdateInfo.setFont(new Font("SansSerif", Font.BOLD, 21));
 		btnUpdateInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
+
 				EditAdminWindow win = new EditAdminWindow(index);
 				win.setVisible(true);
 				setVisible(false);
-			
 
 			}
 		});
@@ -203,14 +192,14 @@ public class AdminInfoWindow extends JFrame {
 		JSeparator separator_4 = new JSeparator();
 		separator_4.setBounds(139, 389, 521, 9);
 		contentPane.add(separator_4);
-		
+
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPassword.setForeground(Color.BLACK);
 		lblPassword.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblPassword.setBounds(119, 489, 272, 45);
 		contentPane.add(lblPassword);
-		
+
 		JLabel label_2 = new JLabel(LoginPageWindow.getAdminsList().get(index).getPassword());
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
 		label_2.setForeground(Color.RED);
@@ -218,7 +207,7 @@ public class AdminInfoWindow extends JFrame {
 		label_2.setBackground(Color.WHITE);
 		label_2.setBounds(378, 489, 272, 45);
 		contentPane.add(label_2);
-		
+
 		JSeparator separator_5 = new JSeparator();
 		separator_5.setBounds(103, 469, 521, 9);
 		contentPane.add(separator_5);
@@ -372,14 +361,14 @@ public class AdminInfoWindow extends JFrame {
 		JSeparator separator_4 = new JSeparator();
 		separator_4.setBounds(139, 389, 521, 9);
 		contentPane.add(separator_4);
-		
+
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPassword.setForeground(Color.BLACK);
 		lblPassword.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblPassword.setBounds(119, 489, 272, 45);
 		contentPane.add(lblPassword);
-		
+
 		JLabel password = new JLabel("hahaha");
 		password.setHorizontalAlignment(SwingConstants.CENTER);
 		password.setForeground(Color.RED);
@@ -387,7 +376,7 @@ public class AdminInfoWindow extends JFrame {
 		password.setBackground(Color.WHITE);
 		password.setBounds(384, 489, 272, 45);
 		contentPane.add(password);
-		
+
 		JSeparator separator_5 = new JSeparator();
 		separator_5.setBounds(103, 469, 521, 9);
 		contentPane.add(separator_5);

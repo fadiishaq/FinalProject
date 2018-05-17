@@ -1,34 +1,22 @@
 package windows;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import personClasses.Administator;
-import testPackage.PersonManagerTest;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
-import java.awt.Toolkit;
-
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
-import java.awt.Dimension;
-
 import javax.swing.SwingConstants;
 
 public class AddAdminWindow extends JFrame {
-	private Dimension dl, db, center;
 
 	private JPanel contentPane;
 	private JTextField age;
@@ -71,9 +59,7 @@ public class AddAdminWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		// display window in the center
-		center = Toolkit.getDefaultToolkit().getScreenSize();
-		setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
+		setLocationRelativeTo(null);
 
 		JLabel lblAddAdmin = new JLabel("Add Administration");
 		lblAddAdmin.setFont(new Font("Tahoma", Font.BOLD, 71));
@@ -101,15 +87,15 @@ public class AddAdminWindow extends JFrame {
 					if (password.getText().equals(password2.getText())) {
 
 						Administator admin = new Administator(name.getText(), Integer.parseInt(age.getText()),
-												street.getText(), house.getText(), city.getText(), username.getText(),
-												password.getText(), LoginPageWindow.getEmployeesList().size() - 1);
+								street.getText(), house.getText(), city.getText(), username.getText(),
+								password.getText(), LoginPageWindow.getEmployeesList().size() - 1);
 
 						LoginPageWindow.getAdminsList().add(admin);
-						
+
 						AdminInfoWindow adminInfo = new AdminInfoWindow(LoginPageWindow.getAdminsList().size() - 1);
-						
+
 						setVisible(false);
-						
+
 						adminInfo.setVisible(true);
 
 					} else {

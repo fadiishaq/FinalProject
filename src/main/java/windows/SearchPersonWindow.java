@@ -1,22 +1,17 @@
 package windows;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import javafx.beans.binding.When;
 import personClasses.*;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
-import java.awt.Panel;
-import java.awt.Toolkit;
 
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
@@ -24,11 +19,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-import javax.swing.JEditorPane;
 
 public class SearchPersonWindow extends JFrame {
-
-	private Dimension dl, db, center;
 
 	private static JPanel contentPane;
 	private JTextField name;
@@ -42,12 +34,10 @@ public class SearchPersonWindow extends JFrame {
 	static EmployeeInfoWindow employeeWin1;
 	static EmployeeInfoWindow employeeWin2;
 	static EmployeeInfoWindow employeeWin3;
-	
+
 	static StudentInfoWindow studentWin1;
 	static StudentInfoWindow studentWin2;
 	static StudentInfoWindow studentWin3;
-	
-	
 
 	/**
 	 * Launch the application.
@@ -84,9 +74,7 @@ public class SearchPersonWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		// display window in the center
-		center = Toolkit.getDefaultToolkit().getScreenSize();
-		setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
+		setLocationRelativeTo(null);
 
 		JLabel lblNewLabel = new JLabel("Search Person");
 		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 47));
@@ -204,12 +192,10 @@ public class SearchPersonWindow extends JFrame {
 							studentWin1.setVisible(true);
 						}
 
-					}
-					else
+					} else
 						JOptionPane.showMessageDialog(null, "No Students Found!");
 
-				}//emp
-
+				} // emp
 
 			}// ACTION PERFORMED
 

@@ -1,64 +1,39 @@
 package windows;
 
 import testPackage.PersonManagerTest;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.json.JsonReadContext;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.google.common.io.Files;
-import com.google.gson.Gson;
 
-import junit.framework.Test;
 import personClasses.*;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
 import java.awt.Font;
-import java.awt.List;
-import java.awt.Toolkit;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.stream.Stream;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
 
 public class LoginPageWindow extends JFrame {
-	private Dimension dl, db, center;
 
-	private static File encFile1 = new File("encryptedAdminsFile.txt");
-	private static File encFile2 = new File("encryptedEmployeeFile.txt");
-	private static File encFile3 = new File("encryptedStudentFile.txt");
 	
 	private static File file1 = new File("admins.txt");
 	private static File file2 = new File("employees.txt");
@@ -195,10 +170,8 @@ public class LoginPageWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		// display window in the center
-		center = Toolkit.getDefaultToolkit().getScreenSize();
-		setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
+		
+		setLocationRelativeTo(null);
 
 		JLabel nameLabel = new JLabel("Username");
 		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 28));

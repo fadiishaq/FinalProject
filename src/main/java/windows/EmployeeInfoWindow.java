@@ -1,32 +1,24 @@
 package windows;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import personClasses.Employee;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
-import java.awt.Toolkit;
 
 import javax.swing.JSeparator;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 
 public class EmployeeInfoWindow extends JFrame {
-	private Dimension dl, db, center;
 
 	private JPanel contentPane;
 
@@ -82,6 +74,8 @@ public class EmployeeInfoWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		setLocationRelativeTo(null);
 
 		JLabel label = new JLabel("Employee");
 		label.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 57));

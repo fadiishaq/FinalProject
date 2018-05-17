@@ -1,14 +1,10 @@
 package windows;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 import personClasses.Administator;
 
@@ -16,10 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
-import javax.swing.JSeparator;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -61,6 +55,8 @@ public class EditAdminWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
+		setLocationRelativeTo(null);
 
 		JLabel label = new JLabel("Admin");
 		label.setFont(new Font("Tahoma", Font.BOLD, 43));
@@ -165,8 +161,6 @@ public class EditAdminWindow extends JFrame {
 
 	}
 
-	
-
 	public void CloseJframe() {
 		super.dispose();
 	}
@@ -184,7 +178,6 @@ public class EditAdminWindow extends JFrame {
 	}
 
 	public void updateInfo3(int x) {
-
 
 		LoginPageWindow.getAdminsList().get(x).setName(name.getText());
 		LoginPageWindow.getAdminsList().get(x).setAge(Integer.parseInt(age.getText()));

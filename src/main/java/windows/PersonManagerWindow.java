@@ -1,37 +1,18 @@
 package windows;
 
-import testPackage.PersonManagerTest;
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 import edu.bu.FinalProjectMaven.Encryption;
-import personClasses.Administator;
 
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.List;
-import java.awt.Choice;
-import java.awt.FlowLayout;
-import javax.swing.JSpinner;
-import java.awt.Scrollbar;
-import javax.swing.JMenu;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
-import javax.swing.JSlider;
-import java.awt.Canvas;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -41,27 +22,16 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
-import javax.swing.JList;
 import java.awt.Color;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import java.awt.Window.Type;
 import java.awt.SystemColor;
-import java.awt.Toolkit;
-import java.awt.Component;
 
-import javax.security.auth.kerberos.EncryptionKey;
-import javax.swing.Box;
 
 public class PersonManagerWindow extends JFrame {
-	 private Dimension dl, db, center; 
 
 	private JPanel contentPane;
-	private static ArrayList<String> jsonStrings = new ArrayList();
 
 	/**
 	 * Launch the application.
@@ -91,11 +61,8 @@ public class PersonManagerWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-			// display window in the center
-			center = Toolkit.getDefaultToolkit().getScreenSize();
-			setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
 
+		setLocationRelativeTo(null);
 
 		JButton addPersonButton = new JButton("Add Person");
 		addPersonButton.setBackground(new Color(255, 248, 220));
@@ -316,7 +283,4 @@ public class PersonManagerWindow extends JFrame {
 
 	}
 
-	public static ArrayList<String> getJsonStrings() {
-		return jsonStrings;
-	}
 }
