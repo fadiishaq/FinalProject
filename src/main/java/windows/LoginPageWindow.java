@@ -56,6 +56,10 @@ import javax.swing.JSeparator;
 public class LoginPageWindow extends JFrame {
 	private Dimension dl, db, center;
 
+	private static File encFile1 = new File("encryptedAdminsFile.txt");
+	private static File encFile2 = new File("encryptedEmployeeFile.txt");
+	private static File encFile3 = new File("encryptedStudentFile.txt");
+	
 	private static File file1 = new File("admins.txt");
 	private static File file2 = new File("employees.txt");
 	private static File file3 = new File("students.txt");
@@ -118,7 +122,8 @@ public class LoginPageWindow extends JFrame {
 			System.out.println("Json mapping exception");
 
 		} catch (IOException e) {
-			System.out.println("Admin file doesn't exist exception");
+			System.out.println("Admin file doesn't exist exception \n "
+					+ "default input: admin");
 
 		}
 
@@ -147,6 +152,8 @@ public class LoginPageWindow extends JFrame {
 				 * 
 				 * } catch (Exception e) { e.printStackTrace(); }
 				 */
+				scanner2.close();
+
 
 			}
 		}
@@ -158,6 +165,9 @@ public class LoginPageWindow extends JFrame {
 					studentsList = om3.readValue(file3, new TypeReference<ArrayList<Student>>() {
 					});
 					System.out.println(studentsList);
+					
+					scanner3.close();
+
 
 				} catch (JsonParseException e) {
 					System.out.println("Parsing exception");

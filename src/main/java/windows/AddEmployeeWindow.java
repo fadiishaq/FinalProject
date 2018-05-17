@@ -163,10 +163,9 @@ public class AddEmployeeWindow extends JFrame {
 
 					LoginPageWindow.getEmployeesList().add(employee);
 
-					EmployeeInfoWindow employeeInfo = new EmployeeInfoWindow(
-							LoginPageWindow.getEmployeesList().size() - 1, false);
+					EmployeeInfoWindow win = new EmployeeInfoWindow(LoginPageWindow.getEmployeesList().size() - 1, false);
 					setVisible(false);
-					employeeInfo.setVisible(true);
+					win.setVisible(true);
 
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, "Wrong input!");

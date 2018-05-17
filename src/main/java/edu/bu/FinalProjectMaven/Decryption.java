@@ -9,33 +9,27 @@ import java.util.*;
 public class Decryption {
 	public static void main(String args[]) {
 
-		File encryptedFile = new File("encryptedAdmins.txt");
+		File encryptedFile = new File("encryptedAdminsFile.txt");
 		File decryptedFile = new File("decryptedAdmins.txt");
 
+		if (!encryptedFile.exists()) {
+			System.out.println("cant find enc file");
+		}
+		if (!decryptedFile.exists()) {
+			try {
+
+				decryptedFile.createNewFile();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		
 		decrypt(encryptedFile, decryptedFile);
 	}
 
-	public static void decrypt(File decrypterFile, File encryptedFile) {
+	public static void decrypt(File decryptedFile, File encryptedFile) {
 
-		if (!encryptedFile.exists()) {
-			try {
-
-				encryptedFile.createNewFile();
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		if (!decrypterFile.exists()) {
-			try {
-
-				decrypterFile.createNewFile();
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
 		
 		
 		String str = null;
@@ -49,7 +43,7 @@ public class Decryption {
 
 			scanner = new Scanner(encryptedFile);
 			
-			writer = new PrintWriter(decrypterFile);
+			writer = new PrintWriter(decryptedFile);
 			
 			
 		} catch (Exception e2) {
@@ -59,8 +53,9 @@ public class Decryption {
 		try {
 
 			str = scanner.nextLine();
+			scanner.close();
 
-			if(!str.equals(null)) {
+//			if(!str.equals(null)) {
 			str = str.replace("36", "a");
 			str = str.replace("35", "b");
 			str = str.replace("34", "c");
@@ -87,9 +82,10 @@ public class Decryption {
 			str = str.replace("13", "x");
 			str = str.replace("12", "y");
 			str = str.replace("11", "z");
-			}
-			else
-				System.out.println("== null :/");
+//			}
+		/*	else
+		*/		System.out.println("== null :/");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

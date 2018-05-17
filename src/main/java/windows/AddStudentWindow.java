@@ -28,8 +28,7 @@ import java.awt.Dimension;
 
 public class AddStudentWindow extends JFrame {
 
-	 private Dimension dl, db, center; 
-	
+	private Dimension dl, db, center;
 
 	private JPanel contentPane;
 	private JTextField name;
@@ -67,11 +66,10 @@ public class AddStudentWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-			// display window in the center
-			center = Toolkit.getDefaultToolkit().getScreenSize();
-			setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
+		// display window in the center
+		center = Toolkit.getDefaultToolkit().getScreenSize();
+		setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
 
-		
 		JLabel lblAddEmployee = new JLabel("Add Student");
 		lblAddEmployee.setFont(new Font("SansSerif", Font.BOLD, 48));
 		lblAddEmployee.setBounds(125, 32, 371, 73);
@@ -96,13 +94,13 @@ public class AddStudentWindow extends JFrame {
 
 					Student student = new Student(name.getText(), Integer.parseInt(age.getText()), street.getText(),
 							house.getText(), city.getText(), Integer.parseInt(grade.getText()),
-							LoginPageWindow.getEmployeesList().size() - 1);
+							LoginPageWindow.getStudentsList().size());
 
 					LoginPageWindow.getStudentsList().add(student);
-					StudentInfoWindow studentInfoWindow = new StudentInfoWindow(
-							LoginPageWindow.getStudentsList().size() - 1);
+
+					StudentInfoWindow win = new StudentInfoWindow(LoginPageWindow.getStudentsList().size() - 1, false);
 					setVisible(false);
-					studentInfoWindow.setVisible(true);
+					win.setVisible(true);
 
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, "Wrong input!");

@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import edu.bu.FinalProjectMaven.Encryption;
 import personClasses.Administator;
 
 import javax.swing.JLabel;
@@ -52,6 +53,8 @@ import java.awt.Window.Type;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.Component;
+
+import javax.security.auth.kerberos.EncryptionKey;
 import javax.swing.Box;
 
 public class PersonManagerWindow extends JFrame {
@@ -264,6 +267,12 @@ public class PersonManagerWindow extends JFrame {
 				 * e.printStackTrace(); }
 				 */
 				setVisible(false);
+				
+				Encryption.encrypt(file1, new File("encryptedAdminsFile.txt"));
+				Encryption.encrypt(file2, new File("encryptedEmployeeFile.txt"));
+				Encryption.encrypt(file3, new File("encryptedStudentFile.txt"));
+
+				
 				System.exit(0);
 
 			}

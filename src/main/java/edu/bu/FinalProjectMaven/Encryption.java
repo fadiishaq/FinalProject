@@ -5,7 +5,7 @@ import java.util.*;
 
 import javax.swing.JOptionPane;
 
-class Encryption {
+public class Encryption {
 	public static void main(String args[]) {
 
 		File file = new File("D:\\java-oxygen\\eclipse\\projects\\FinalProjectMaven\\admins.txt");

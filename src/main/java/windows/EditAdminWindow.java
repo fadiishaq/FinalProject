@@ -248,7 +248,7 @@ public class EditAdminWindow extends JFrame {
 		LoginPageWindow.getAdminsList().get(index).setUserName(username.getText());
 		LoginPageWindow.getAdminsList().get(index).setPassword(password.getText());
 
-		AdminInfoWindow win = new AdminInfoWindow(index);
+		AdminInfoWindow win = new AdminInfoWindow(index, false);
 	}
 
 	public void updateInfo3(int x) {
@@ -287,6 +287,6 @@ public class EditAdminWindow extends JFrame {
 		LoginPageWindow.getAdminsList().get(input).setUserName(username.getText());
 		LoginPageWindow.getAdminsList().get(input).setPassword(password.getText());
 
-		AdminInfoWindow win = new AdminInfoWindow(input);
+		AdminInfoWindow win = new AdminInfoWindow(input, false);
 	}
 }

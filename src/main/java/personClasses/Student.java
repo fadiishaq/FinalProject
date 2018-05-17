@@ -13,8 +13,8 @@ public class Student extends Person{
 		super();
 	}
 
-	public Student(String name, int age, String streetName, String houseNumber, String city, int grade, int num) {
-		super(name, age, new Address(streetName, houseNumber, city), num);
+	public Student(String name, int age, String streetName, String houseNumber, String city, int grade, int index) {
+		super(name, age, new Address(streetName, houseNumber, city), index);
 		this.grade = grade;
 	}
 
@@ -31,10 +31,5 @@ public class Student extends Person{
 		return super.toString() + "\nGrade: " + this.grade;
 	}
 	
-	public static void toWindow(int index) {
 
-		StudentInfoWindow infoWin = new StudentInfoWindow(index);
-		infoWin.setVisible(true);
-
-	}
 }

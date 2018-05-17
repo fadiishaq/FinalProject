@@ -32,13 +32,22 @@ public class SearchPersonWindow extends JFrame {
 
 	private static JPanel contentPane;
 	private JTextField name;
-	private ArrayList<Student> studentsFound = new ArrayList();
+	private static ArrayList<Student> studentsFound = new ArrayList();
 	private static ArrayList<Employee> employeesFound = new ArrayList();
 	private ArrayList<Administator> adminsFound = new ArrayList();
-	ArrayList<JFrame> windowsList = new ArrayList();
 	JLabel PeopleFoundLabel;
 	JLabel nPeopleFound;
 	int count;
+
+	static EmployeeInfoWindow employeeWin1;
+	static EmployeeInfoWindow employeeWin2;
+	static EmployeeInfoWindow employeeWin3;
+	
+	static StudentInfoWindow studentWin1;
+	static StudentInfoWindow studentWin2;
+	static StudentInfoWindow studentWin3;
+	
+	
 
 	/**
 	 * Launch the application.
@@ -64,8 +73,7 @@ public class SearchPersonWindow extends JFrame {
 	JCheckBox employeeBox;
 	JCheckBox studentBox;
 	JCheckBox unlimitedBox;
-	private JTextField numOfPeople;
-	private JTextField numOfPersons;
+
 	static ArrayList<Person> persons;
 
 	public SearchPersonWindow() {
@@ -118,81 +126,90 @@ public class SearchPersonWindow extends JFrame {
 				if ((employeeBox.isSelected() || studentBox.isSelected()) && unlimitedBox.isSelected())
 					JOptionPane.showMessageDialog(null, "Please check one box only");
 
-				else if ((employeeBox.isSelected() && studentBox.isSelected()) && unlimitedBox.isSelected())
+				else if (employeeBox.isSelected() && studentBox.isSelected())
 					JOptionPane.showMessageDialog(null, "Please check one box only");
 
 				else if (employeeBox.isSelected()) {
 
-					if (employeesFound.size() > 0)
-						employeesFound.clear();
-
-					
-					employeesFound = findEmployees(LoginPageWindow.getEmployeesList(), name.getText());
-
 					if (employeesFound.size() > 0) {
-
-						if (employeesFound.size() == 1) {
-							
-							EmployeeInfoWindow win = new EmployeeInfoWindow(0, false);
-							win.setVisible(true);
-							
-						}
-						else if(employeesFound.size() > 1) {
-							
-							EmployeeInfoWindow win = new EmployeeInfoWindow(0, true);
-							win.setVisible(true);
-							
-						}
-
-					} else {
-						JOptionPane.showMessageDialog(null, "no employees");
+						employeesFound.clear();
 					}
 
-					/*
-					 * for (int i = 0; i < employeesFound.size(); i++) {
-					 * 
-					 * EmployeeInfoWindow win = new
-					 * EmployeeInfoWindow(employeesFound.get(i).getNum() + 1, false);
-					 * windowsList.add(win); win.setVisible(true);
-					 * 
-					 * }
-					 */
+					employeesFound = findEmployees(LoginPageWindow.getEmployeesList(), name.getText());
 
-				}
+					if (employeesFound != null && employeesFound.size() > 0) {
+
+						if (employeesFound.size() == 1) {
+
+							EmployeeInfoWindow win = new EmployeeInfoWindow(employeesFound.get(0).getIndex(), false);
+							win.setVisible(true);
+
+						}
+
+						else if (employeesFound.size() == 2) {
+
+							employeeWin1 = new EmployeeInfoWindow(employeesFound.get(0).getIndex(), true);
+							employeeWin2 = new EmployeeInfoWindow(employeesFound.get(0).getIndex(), false);
+
+							employeeWin1.setVisible(true);
+
+						}
+
+						else if (employeesFound.size() == 3) {
+
+							employeeWin1 = new EmployeeInfoWindow(employeesFound.get(0).getIndex(), true);
+							employeeWin2 = new EmployeeInfoWindow(employeesFound.get(1).getIndex(), true);
+							employeeWin3 = new EmployeeInfoWindow(employeesFound.get(2).getIndex(), false);
+
+							employeeWin1.setVisible(true);
+						}
+
+					} else
+						JOptionPane.showMessageDialog(null, "No employees found!");
+
+				} // employee
 
 				else if (studentBox.isSelected()) {
 
-					if (studentsFound.size() > 0)
+					if (studentsFound.size() > 0) {
 						studentsFound.clear();
+					}
 
 					studentsFound = findStudents(LoginPageWindow.getStudentsList(), name.getText());
 
-					if (studentsFound == null) {
-						JOptionPane.showMessageDialog(null, "no students found");
+					if (studentsFound != null && studentsFound.size() > 0) {
+
+						if (studentsFound.size() == 1) {
+
+							StudentInfoWindow win = new StudentInfoWindow(studentsFound.get(0).getIndex(), false);
+							win.setVisible(true);
+
+						}
+
+						else if (studentsFound.size() == 2) {
+
+							studentWin1 = new StudentInfoWindow(studentsFound.get(0).getIndex(), true);
+							studentWin2 = new StudentInfoWindow(studentsFound.get(0).getIndex(), false);
+
+							employeeWin1.setVisible(true);
+
+						}
+
+						else if (studentsFound.size() == 3) {
+
+							studentWin1 = new StudentInfoWindow(studentsFound.get(0).getIndex(), true);
+							studentWin2 = new StudentInfoWindow(studentsFound.get(1).getIndex(), true);
+							studentWin3 = new StudentInfoWindow(studentsFound.get(2).getIndex(), false);
+
+							studentWin1.setVisible(true);
+						}
+
 					}
+					else
+						JOptionPane.showMessageDialog(null, "No Students Found!");
 
-					else {
-						createTextField(studentsFound.size());
-						createResult2(studentsFound);
+				}//emp
 
-					}
-
-				}
-
-				else if (unlimitedBox.isSelected()) {
-					ArrayList<Person> persons = searchAll(LoginPageWindow.getEmployeesList(),
-							LoginPageWindow.getStudentsList());
-
-					if (persons.size() < 1)
-						JOptionPane.showMessageDialog(null, "no results found");
-
-					else {
-						createTextField(persons.size());
-						createResult3();
-
-					}
-
-				}
 
 			}// ACTION PERFORMED
 
@@ -358,9 +375,9 @@ public class SearchPersonWindow extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 
-//				StudentInfoWindow info = new StudentInfoWindow(count);
+				// StudentInfoWindow info = new StudentInfoWindow(count);
 
-//				info.setVisible(true);
+				// info.setVisible(true);
 
 			}
 
@@ -397,7 +414,7 @@ public class SearchPersonWindow extends JFrame {
 		return persons;
 	}
 
-	public ArrayList<Student> getStudentsFound() {
+	public static ArrayList<Student> getStudentsFound() {
 		return studentsFound;
 	}
 

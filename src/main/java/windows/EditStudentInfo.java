@@ -27,7 +27,7 @@ import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
-public class EditEmployeeWindow extends JFrame {
+public class EditStudentInfo extends JFrame {
 	 private Dimension dl, db, center; 
 
 	private JPanel contentPane;
@@ -36,7 +36,7 @@ public class EditEmployeeWindow extends JFrame {
 	private JTextField street;
 	private JTextField house;
 	private JTextField city;
-	private JTextField salary;
+	private JTextField grade;
 
 	Scanner scanner = new Scanner(System.in);
 	/**
@@ -62,7 +62,7 @@ public class EditEmployeeWindow extends JFrame {
 	 * Create the frame.
 	 */
 
-	public EditEmployeeWindow(final int index) {
+	public EditStudentInfo(final int index) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 930, 558);
 		contentPane = new JPanel();
@@ -75,7 +75,7 @@ public class EditEmployeeWindow extends JFrame {
 			setLocation(center.width / 2 - getSize().width / 2, center.height / 2 - getSize().height / 2);
 
 		
-		JLabel label = new JLabel("Employee");
+		JLabel label = new JLabel("Student");
 		label.setFont(new Font("Tahoma", Font.BOLD, 43));
 		label.setBounds(289, 11, 238, 90);
 		contentPane.add(label);
@@ -110,13 +110,13 @@ public class EditEmployeeWindow extends JFrame {
 		cityLabel.setBounds(532, 244, 100, 29);
 		contentPane.add(cityLabel);
 
-		JLabel salaryLabel = new JLabel("Salary: ");
+		JLabel salaryLabel = new JLabel("Grade: ");
 		salaryLabel.setForeground(Color.BLACK);
 		salaryLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
 		salaryLabel.setBounds(539, 350, 122, 29);
 		contentPane.add(salaryLabel);
 
-		name = new JTextField(LoginPageWindow.getEmployeesList().get(index).getName());
+		name = new JTextField(LoginPageWindow.getStudentsList().get(index).getName());
 		name.setBounds(227, 133, 202, 42);
 		contentPane.add(name);
 		name.setColumns(10);
@@ -137,34 +137,35 @@ public class EditEmployeeWindow extends JFrame {
 			  }
 			});
 
-		age = new JTextField(Integer.toString(LoginPageWindow.getEmployeesList().get(index).getAge()));
+		age = new JTextField(Integer.toString(LoginPageWindow.getStudentsList().get(index).getAge()));
 		age.setColumns(10);
 		age.setBounds(227, 243, 202, 42);
 		contentPane.add(age);
 
-		street = new JTextField(LoginPageWindow.getEmployeesList().get(index).getAddress().getStreetName());
+		street = new JTextField(LoginPageWindow.getStudentsList().get(index).getAddress().getStreetName());
 		street.setColumns(10);
 		street.setBounds(227, 337, 202, 42);
 		contentPane.add(street);
 
-		house = new JTextField(LoginPageWindow.getEmployeesList().get(index).getAddress().getHouseNumber());
+		house = new JTextField(LoginPageWindow.getStudentsList().get(index).getAddress().getHouseNumber());
 		house.setColumns(10);
 		house.setBounds(691, 133, 202, 42);
 		contentPane.add(house);
 
-		city = new JTextField(LoginPageWindow.getEmployeesList().get(index).getAddress().getCity());
+		city = new JTextField(LoginPageWindow.getStudentsList().get(index).getAddress().getCity());
 		city.setColumns(10);
 		city.setBounds(691, 243, 202, 42);
 		contentPane.add(city);
 
-		salary = new JTextField(Integer.toString(LoginPageWindow.getEmployeesList().get(index).getSalary()));
-		salary.setColumns(10);
-		salary.setBounds(691, 349, 202, 42);
-		contentPane.add(salary);
+		grade = new JTextField(Integer.toString(LoginPageWindow.getStudentsList().get(index).getGrade()));
+		grade.setColumns(10);
+		grade.setBounds(691, 349, 202, 42);
+		contentPane.add(grade);
 
 		JButton btnOkay = new JButton("Update");
 		btnOkay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				updateInfo3(index);
 				setVisible(false);
 				JOptionPane.showMessageDialog(null, "Info has been updated!");
@@ -297,7 +298,7 @@ Operation(JFrame.EXIT_ON_CLOSE);
 		LoginPageWindow.getEmployeesList().get(index).getAddress().setStreetName(street.getText());
 		LoginPageWindow.getEmployeesList().get(index).getAddress().setHouseNumber(house.getText());
 		LoginPageWindow.getEmployeesList().get(index).getAddress().setCity(city.getText());
-		LoginPageWindow.getEmployeesList().get(index).setSalary(Integer.parseInt(salary.getText()));
+		LoginPageWindow.getEmployeesList().get(index).setSalary(Integer.parseInt(grade.getText()));
 
 		EmployeeInfoWindow win = new EmployeeInfoWindow(index, false);
 	}
@@ -314,14 +315,16 @@ public void updateInfo3(int x) {
 			i++;
 		}*/
 		
-	LoginPageWindow.getEmployeesList().get(x).setName(name.getText());
-	LoginPageWindow.getEmployeesList().get(x).setAge(Integer.parseInt(age.getText()));
-	LoginPageWindow.getEmployeesList().get(x).getAddress().setStreetName(street.getText());
-	LoginPageWindow.getEmployeesList().get(x).getAddress().setHouseNumber(house.getText());
-	LoginPageWindow.getEmployeesList().get(x).getAddress().setCity(city.getText());
-	LoginPageWindow.getEmployeesList().get(x).setSalary(Integer.parseInt(salary.getText()));
+	LoginPageWindow.getStudentsList().get(x).setName(name.getText());
+	LoginPageWindow.getStudentsList().get(x).setAge(Integer.parseInt(age.getText()));
+	LoginPageWindow.getStudentsList().get(x).getAddress().setStreetName(street.getText());
+	LoginPageWindow.getStudentsList().get(x).getAddress().setHouseNumber(house.getText());
+	LoginPageWindow.getStudentsList().get(x).getAddress().setCity(city.getText());
+	LoginPageWindow.getStudentsList().get(x).setGrade(Integer.parseInt(grade.getText()));
 
-		EditEmployeeWindow w = new EditEmployeeWindow(x);
+		EditStudentInfo win = new EditStudentInfo(x);
+		setVisible(false);
+		win.setVisible(true);
 		//EmployeeInfoWindow win = new EmployeeInfoWindow(x);
 	}
 
@@ -353,7 +356,7 @@ public void updateInfo2(Scanner scanner) {
 		LoginPageWindow.getEmployeesList().get(input).getAddress().setStreetName(street.getText());
 		LoginPageWindow.getEmployeesList().get(input).getAddress().setHouseNumber(house.getText());
 		LoginPageWindow.getEmployeesList().get(input).getAddress().setCity(city.getText());
-		LoginPageWindow.getEmployeesList().get(input).setSalary(Integer.parseInt(salary.getText()));
+		LoginPageWindow.getEmployeesList().get(input).setSalary(Integer.parseInt(grade.getText()));
 
 		EmployeeInfoWindow win = new EmployeeInfoWindow(input, false);
 	}

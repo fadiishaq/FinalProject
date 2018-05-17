@@ -29,7 +29,6 @@ public class EmployeeInfoWindow extends JFrame {
 	private Dimension dl, db, center;
 
 	private JPanel contentPane;
-	private static int i = 1;
 
 	/**
 	 * Launch the application.
@@ -51,6 +50,29 @@ public class EmployeeInfoWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	EmployeeInfoWindow win1;
+	EmployeeInfoWindow win2;
+	EmployeeInfoWindow win3;
+
+	/*
+	 * public static void declareWins() {
+	 * 
+	 * EmployeeInfoWindow win1 = null; EmployeeInfoWindow win2 = null;
+	 * EmployeeInfoWindow win3 = null; }
+	 */
+
+	public static void assignWins(EmployeeInfoWindow win1, EmployeeInfoWindow win2, EmployeeInfoWindow win3) {
+
+		if (SearchPersonWindow.getEmployeesFound().size() == 2) {
+			win1 = new EmployeeInfoWindow(SearchPersonWindow.getEmployeesFound().get(1).getIndex(), false);
+		}
+
+		else if (SearchPersonWindow.getEmployeesFound().size() == 3) {
+			win2 = new EmployeeInfoWindow(SearchPersonWindow.getEmployeesFound().get(1).getIndex(), true);
+			win3 = new EmployeeInfoWindow(SearchPersonWindow.getEmployeesFound().get(2).getIndex(), false);
+		}
+
+	}
 
 	public EmployeeInfoWindow(final int index, boolean showNextButton) {
 
@@ -121,10 +143,16 @@ public class EmployeeInfoWindow extends JFrame {
 
 		JButton btnUpdateInfo = new JButton("Update Info");
 		btnUpdateInfo.setFont(new Font("SansSerif", Font.BOLD, 21));
+
 		btnUpdateInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
+				EditEmployeeWindow win = new EditEmployeeWindow(index);
+				setVisible(false);
+				win.setVisible(true);
+
 			}
+
 		});
 		btnUpdateInfo.setBounds(261, 590, 262, 58);
 		contentPane.add(btnUpdateInfo);
@@ -135,36 +163,27 @@ public class EmployeeInfoWindow extends JFrame {
 			btnNext.setFont(new Font("SansSerif", Font.BOLD, 21));
 			btnNext.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					EmployeeInfoWindow win0 = null;
-					EmployeeInfoWindow win1 = null;
-					EmployeeInfoWindow win2 = null;
 
-					ArrayList<Employee> employeesFound = SearchPersonWindow.getEmployeesFound();
-					
-					if (employeesFound.size() == 2) {
-
-						win0 = new EmployeeInfoWindow(employeesFound.get(1).getIndex(), false);
+					if (SearchPersonWindow.getEmployeesFound().size() == 2) {
 						setVisible(false);
-						win0.setVisible(true);
-
-					} else if (employeesFound.size() == 3) {
-
-						win1 = new EmployeeInfoWindow(employeesFound.get(1).getIndex(), true);
-						win2 = new EmployeeInfoWindow(employeesFound.get(2).getIndex(), false);
-
+						SearchPersonWindow.employeeWin2.setVisible(true);
 					}
 
-					if (win1.isVisible()) {
-						win1.setVisible(false);
-						win2.setVisible(true);
-					}
+					else if (SearchPersonWindow.getEmployeesFound().size() == 3) {
 
-					else if (!win1.isVisible()) {
-						win1.setVisible(true);
+						if (SearchPersonWindow.employeeWin2.isVisible()) {
+							SearchPersonWindow.employeeWin2.setVisible(false);
+							SearchPersonWindow.employeeWin3.setVisible(true);
+						} else if (!SearchPersonWindow.employeeWin2.isVisible()) {
+
+							SearchPersonWindow.employeeWin1.setVisible(false);
+							SearchPersonWindow.employeeWin2.setVisible(true);
+
+						}
+
 					}
 
 				}
-
 			});
 			btnNext.setBounds(608, 590, 157, 58);
 			contentPane.add(btnNext);
@@ -236,6 +255,8 @@ public class EmployeeInfoWindow extends JFrame {
 		JSeparator separator_4 = new JSeparator();
 		separator_4.setBounds(129, 483, 521, 9);
 		contentPane.add(separator_4);
+
+		setLocationRelativeTo(null);
 
 	}
 
@@ -391,11 +412,4 @@ public class EmployeeInfoWindow extends JFrame {
 		super.dispose();
 	}
 
-	public static int getI() {
-		return i;
-	}
-
-	public void setI(int i) {
-		this.i = i;
-	}
 }
