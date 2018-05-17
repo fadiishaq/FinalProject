@@ -25,7 +25,7 @@ public class EmployeeInfoWindow extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -38,7 +38,7 @@ public class EmployeeInfoWindow extends JFrame {
 		});
 
 	}// main
-
+*/
 	/**
 	 * Create the frame.
 	 */
@@ -85,42 +85,42 @@ public class EmployeeInfoWindow extends JFrame {
 		JLabel nameLabel = new JLabel("Name: ");
 		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		nameLabel.setForeground(Color.BLACK);
-		nameLabel.setFont(new Font("SansSerif", Font.BOLD, 30));
+		nameLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
 		nameLabel.setBounds(119, 101, 272, 45);
 		contentPane.add(nameLabel);
 
 		JLabel ageLabel = new JLabel("Age: ");
 		ageLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		ageLabel.setForeground(Color.BLACK);
-		ageLabel.setFont(new Font("SansSerif", Font.BOLD, 30));
+		ageLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
 		ageLabel.setBounds(119, 178, 272, 45);
 		contentPane.add(ageLabel);
 
 		JLabel streetLabel = new JLabel("Street: ");
 		streetLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		streetLabel.setForeground(Color.BLACK);
-		streetLabel.setFont(new Font("SansSerif", Font.BOLD, 30));
+		streetLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
 		streetLabel.setBounds(119, 259, 272, 45);
 		contentPane.add(streetLabel);
 
 		JLabel houseLabel = new JLabel("House Number: ");
 		houseLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		houseLabel.setForeground(Color.BLACK);
-		houseLabel.setFont(new Font("SansSerif", Font.BOLD, 30));
+		houseLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
 		houseLabel.setBounds(119, 340, 272, 50);
 		contentPane.add(houseLabel);
 
 		JLabel cityLabel = new JLabel("City: ");
 		cityLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		cityLabel.setForeground(Color.BLACK);
-		cityLabel.setFont(new Font("SansSerif", Font.BOLD, 30));
+		cityLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
 		cityLabel.setBounds(119, 425, 272, 45);
 		contentPane.add(cityLabel);
 
 		JLabel salaryLabel = new JLabel("Salary: ");
 		salaryLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		salaryLabel.setForeground(Color.BLACK);
-		salaryLabel.setFont(new Font("SansSerif", Font.BOLD, 30));
+		salaryLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
 		salaryLabel.setBounds(119, 500, 272, 45);
 		contentPane.add(salaryLabel);
 
@@ -128,7 +128,7 @@ public class EmployeeInfoWindow extends JFrame {
 		btnOkay.setFont(new Font("SansSerif", Font.BOLD, 21));
 		btnOkay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CloseJframe();
+				setVisible(false);
 
 			}
 		});
@@ -159,6 +159,7 @@ public class EmployeeInfoWindow extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 
 					if (SearchPersonWindow.getEmployeesFound().size() == 2) {
+						
 						setVisible(false);
 						SearchPersonWindow.employeeWin2.setVisible(true);
 					}
@@ -185,48 +186,48 @@ public class EmployeeInfoWindow extends JFrame {
 		JLabel name = new JLabel(LoginPageWindow.getEmployeesList().get(index).getName());
 		name.setBackground(Color.WHITE);
 		name.setHorizontalAlignment(SwingConstants.CENTER);
-		name.setForeground(Color.RED);
-		name.setFont(new Font("SansSerif", Font.PLAIN, 30));
+		name.setForeground(new Color(0, 0, 255));
+		name.setFont(new Font("SansSerif", Font.PLAIN, 25));
 		name.setBounds(401, 98, 272, 45);
 		contentPane.add(name);
 
 		JLabel age = new JLabel(Integer.toString(LoginPageWindow.getEmployeesList().get(index).getAge()));
 		age.setBackground(Color.WHITE);
 		age.setHorizontalAlignment(SwingConstants.CENTER);
-		age.setForeground(Color.RED);
-		age.setFont(new Font("SansSerif", Font.PLAIN, 30));
+		age.setForeground(new Color(0, 0, 255));
+		age.setFont(new Font("SansSerif", Font.PLAIN, 25));
 		age.setBounds(401, 178, 272, 42);
 		contentPane.add(age);
 
 		JLabel street = new JLabel(LoginPageWindow.getEmployeesList().get(index).getAddress().getStreetName());
 		street.setBackground(Color.WHITE);
 		street.setHorizontalAlignment(SwingConstants.CENTER);
-		street.setForeground(Color.RED);
-		street.setFont(new Font("SansSerif", Font.PLAIN, 30));
+		street.setForeground(new Color(0, 0, 255));
+		street.setFont(new Font("SansSerif", Font.PLAIN, 25));
 		street.setBounds(401, 259, 272, 45);
 		contentPane.add(street);
 
 		JLabel house = new JLabel(LoginPageWindow.getEmployeesList().get(index).getAddress().getHouseNumber());
 		house.setBackground(Color.WHITE);
 		house.setHorizontalAlignment(SwingConstants.CENTER);
-		house.setForeground(Color.RED);
-		house.setFont(new Font("SansSerif", Font.PLAIN, 30));
+		house.setForeground(new Color(0, 0, 255));
+		house.setFont(new Font("SansSerif", Font.PLAIN, 25));
 		house.setBounds(401, 340, 272, 50);
 		contentPane.add(house);
 
 		JLabel city = new JLabel(LoginPageWindow.getEmployeesList().get(index).getAddress().getCity());
 		city.setBackground(Color.WHITE);
 		city.setHorizontalAlignment(SwingConstants.CENTER);
-		city.setForeground(Color.RED);
-		city.setFont(new Font("SansSerif", Font.PLAIN, 30));
+		city.setForeground(new Color(0, 0, 255));
+		city.setFont(new Font("SansSerif", Font.PLAIN, 25));
 		city.setBounds(401, 425, 272, 45);
 		contentPane.add(city);
 
 		JLabel salary = new JLabel(Integer.toString(LoginPageWindow.getEmployeesList().get(index).getSalary()));
 		salary.setBackground(Color.WHITE);
 		salary.setHorizontalAlignment(SwingConstants.CENTER);
-		salary.setForeground(Color.RED);
-		salary.setFont(new Font("SansSerif", Font.PLAIN, 30));
+		salary.setForeground(new Color(0, 0, 255));
+		salary.setFont(new Font("SansSerif", Font.PLAIN, 25));
 		salary.setBounds(401, 500, 272, 45);
 		contentPane.add(salary);
 
@@ -256,7 +257,7 @@ public class EmployeeInfoWindow extends JFrame {
 
 	////////////////////////////////////////////////////////////////////////////////
 
-	public EmployeeInfoWindow() {
+	/*public EmployeeInfoWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 820, 698);
 		contentPane = new JPanel();
@@ -400,10 +401,8 @@ public class EmployeeInfoWindow extends JFrame {
 		separator_4.setBounds(129, 483, 521, 9);
 		contentPane.add(separator_4);
 
-	}
+	}*/
 
-	public void CloseJframe() {
-		super.dispose();
-	}
+	 
 
 }

@@ -47,49 +47,50 @@ public class StudentInfoWindow extends JFrame {
 		setLocationRelativeTo(null);
 
 		JLabel label = new JLabel("Student");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 57));
-		label.setBounds(253, 0, 371, 90);
+		label.setBounds(211, 0, 371, 90);
 		contentPane.add(label);
 
 		JLabel nameLabel = new JLabel("Name: ");
 		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		nameLabel.setForeground(Color.BLACK);
-		nameLabel.setFont(new Font("SansSerif", Font.BOLD, 30));
+		nameLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
 		nameLabel.setBounds(119, 101, 272, 45);
 		contentPane.add(nameLabel);
 
 		JLabel ageLabel = new JLabel("Age: ");
 		ageLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		ageLabel.setForeground(Color.BLACK);
-		ageLabel.setFont(new Font("SansSerif", Font.BOLD, 30));
+		ageLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
 		ageLabel.setBounds(119, 178, 272, 45);
 		contentPane.add(ageLabel);
 
 		JLabel streetLabel = new JLabel("Street: ");
 		streetLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		streetLabel.setForeground(Color.BLACK);
-		streetLabel.setFont(new Font("SansSerif", Font.BOLD, 30));
+		streetLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
 		streetLabel.setBounds(119, 259, 272, 45);
 		contentPane.add(streetLabel);
 
 		JLabel houseLabel = new JLabel("House Number: ");
 		houseLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		houseLabel.setForeground(Color.BLACK);
-		houseLabel.setFont(new Font("SansSerif", Font.BOLD, 30));
+		houseLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
 		houseLabel.setBounds(119, 340, 272, 50);
 		contentPane.add(houseLabel);
 
 		JLabel cityLabel = new JLabel("City: ");
 		cityLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		cityLabel.setForeground(Color.BLACK);
-		cityLabel.setFont(new Font("SansSerif", Font.BOLD, 30));
+		cityLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
 		cityLabel.setBounds(119, 425, 272, 45);
 		contentPane.add(cityLabel);
 
 		JLabel salaryLabel = new JLabel("Grade: ");
 		salaryLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		salaryLabel.setForeground(Color.BLACK);
-		salaryLabel.setFont(new Font("SansSerif", Font.BOLD, 30));
+		salaryLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
 		salaryLabel.setBounds(119, 500, 272, 45);
 		contentPane.add(salaryLabel);
 
@@ -97,8 +98,9 @@ public class StudentInfoWindow extends JFrame {
 		btnOkay.setFont(new Font("SansSerif", Font.BOLD, 21));
 		btnOkay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CloseJframe();
-
+				
+				setVisible(false);
+				
 			}
 		});
 		btnOkay.setBounds(10, 590, 179, 58);
@@ -128,8 +130,9 @@ public class StudentInfoWindow extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 
 					if (SearchPersonWindow.getStudentsFound().size() == 2) {
-						setVisible(false);
-						SearchPersonWindow.studentWin1.setVisible(true);
+						
+						SearchPersonWindow.studentWin1.setVisible(false);
+						SearchPersonWindow.studentWin2.setVisible(true);
 					}
 
 					else if (SearchPersonWindow.getStudentsFound().size() == 3) {
@@ -154,48 +157,48 @@ public class StudentInfoWindow extends JFrame {
 		JLabel name = new JLabel(LoginPageWindow.getStudentsList().get(index).getName());
 		name.setBackground(Color.WHITE);
 		name.setHorizontalAlignment(SwingConstants.CENTER);
-		name.setForeground(Color.RED);
-		name.setFont(new Font("SansSerif", Font.PLAIN, 30));
+		name.setForeground(new Color(0, 0, 255));
+		name.setFont(new Font("SansSerif", Font.PLAIN, 22));
 		name.setBounds(401, 98, 272, 45);
 		contentPane.add(name);
 
 		JLabel age = new JLabel(Integer.toString(LoginPageWindow.getStudentsList().get(index).getAge()));
 		age.setBackground(Color.WHITE);
 		age.setHorizontalAlignment(SwingConstants.CENTER);
-		age.setForeground(Color.RED);
-		age.setFont(new Font("SansSerif", Font.PLAIN, 30));
+		age.setForeground(new Color(0, 0, 255));
+		age.setFont(new Font("SansSerif", Font.PLAIN, 22));
 		age.setBounds(401, 178, 272, 42);
 		contentPane.add(age);
 
 		JLabel street = new JLabel(LoginPageWindow.getStudentsList().get(index).getAddress().getStreetName());
 		street.setBackground(Color.WHITE);
 		street.setHorizontalAlignment(SwingConstants.CENTER);
-		street.setForeground(Color.RED);
-		street.setFont(new Font("SansSerif", Font.PLAIN, 30));
+		street.setForeground(new Color(0, 0, 255));
+		street.setFont(new Font("SansSerif", Font.PLAIN, 22));
 		street.setBounds(401, 259, 272, 45);
 		contentPane.add(street);
 
 		JLabel house = new JLabel(LoginPageWindow.getStudentsList().get(index).getAddress().getHouseNumber());
 		house.setBackground(Color.WHITE);
 		house.setHorizontalAlignment(SwingConstants.CENTER);
-		house.setForeground(Color.RED);
-		house.setFont(new Font("SansSerif", Font.PLAIN, 30));
+		house.setForeground(new Color(0, 0, 255));
+		house.setFont(new Font("SansSerif", Font.PLAIN, 22));
 		house.setBounds(401, 340, 272, 50);
 		contentPane.add(house);
 
 		JLabel city = new JLabel(LoginPageWindow.getStudentsList().get(index).getAddress().getCity());
 		city.setBackground(Color.WHITE);
 		city.setHorizontalAlignment(SwingConstants.CENTER);
-		city.setForeground(Color.RED);
-		city.setFont(new Font("SansSerif", Font.PLAIN, 30));
+		city.setForeground(new Color(0, 0, 255));
+		city.setFont(new Font("SansSerif", Font.PLAIN, 22));
 		city.setBounds(401, 425, 272, 45);
 		contentPane.add(city);
 
 		JLabel salary = new JLabel(Integer.toString(LoginPageWindow.getStudentsList().get(index).getGrade()));
 		salary.setBackground(Color.WHITE);
 		salary.setHorizontalAlignment(SwingConstants.CENTER);
-		salary.setForeground(Color.RED);
-		salary.setFont(new Font("SansSerif", Font.PLAIN, 30));
+		salary.setForeground(new Color(0, 0, 255));
+		salary.setFont(new Font("SansSerif", Font.PLAIN, 22));
 		salary.setBounds(401, 500, 272, 45);
 		contentPane.add(salary);
 
@@ -333,9 +336,5 @@ public class StudentInfoWindow extends JFrame {
 	 * 
 	 * }
 	 */
-
-	public void CloseJframe() {
-		super.dispose();
-	}
 
 }

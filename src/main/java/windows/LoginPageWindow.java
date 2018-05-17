@@ -97,8 +97,7 @@ public class LoginPageWindow extends JFrame {
 			System.out.println("Json mapping exception");
 
 		} catch (IOException e) {
-			System.out.println("Admin file doesn't exist exception \n "
-					+ "default input: admin");
+			System.out.println("Admin file doesn't exist yet\ndefault input: admin, admin");
 
 		}
 

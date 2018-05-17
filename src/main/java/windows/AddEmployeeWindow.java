@@ -136,9 +136,8 @@ public class AddEmployeeWindow extends JFrame {
 							LoginPageWindow.getEmployeesList().size());
 
 					LoginPageWindow.getEmployeesList().add(employee);
-
-					EmployeeInfoWindow win = new EmployeeInfoWindow(LoginPageWindow.getEmployeesList().size() - 1,
-							false);
+ 
+					EmployeeInfoWindow win = new EmployeeInfoWindow(LoginPageWindow.getEmployeesList().size() - 1, false);
 					setVisible(false);
 					win.setVisible(true);
 

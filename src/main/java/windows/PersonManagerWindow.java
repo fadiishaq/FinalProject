@@ -28,7 +28,6 @@ import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.SystemColor;
 
-
 public class PersonManagerWindow extends JFrame {
 
 	private JPanel contentPane;
@@ -124,7 +123,7 @@ public class PersonManagerWindow extends JFrame {
 				File file1 = new File("admins.txt");
 				File file2 = new File("employees.txt");
 				File file3 = new File("students.txt");
-				
+
 				try {
 					if (!file1.exists()) {
 						file1.createNewFile();
@@ -175,7 +174,6 @@ public class PersonManagerWindow extends JFrame {
 				String jsonString2 = null;
 				String jsonString3 = null;
 
-
 				try {
 					if (LoginPageWindow.getAdminsList() != null)
 						jsonString1 = om.writeValueAsString(LoginPageWindow.getAdminsList());
@@ -197,49 +195,12 @@ public class PersonManagerWindow extends JFrame {
 				printWriter2.close();
 				printWriter3.close();
 
-				System.out.println(jsonString1);
-				System.out.println(jsonString2);
-				System.out.println(jsonString3);
+				System.out.println("employees json: " + jsonString2);
+				System.out.println("students json: " + jsonString3);
+				System.out.println("admins json: " + jsonString1);
 
-				/*
-				 * ObjectMapper mapper = new ObjectMapper(); String s = null;
-				 * 
-				 * File file = new
-				 * File("D:\\java-oxygen\\eclipse\\projects\\FinalProjectMaven\\admins.txt"); if
-				 * (!file.exists()) try { file.createNewFile(); } catch (IOException e2) {
-				 * e2.printStackTrace(); }
-				 * 
-				 * String source = readFile(file); //file.delete();
-				 * 
-				 * File fnew = new File("admins2"); if(!fnew.exists()) { try {
-				 * fnew.createNewFile(); } catch (IOException e) { // TODO Auto-generated catch
-				 * block e.printStackTrace(); } } System.out.println(source);
-				 * 
-				 * try { FileWriter f2 = new FileWriter(fnew, false); f2.write(source);
-				 * f2.close();
-				 * 
-				 * } catch (IOException e) { e.printStackTrace(); }
-				 * 
-				 * if (!file.exists()) { try { file.createNewFile(); } catch (IOException e1) {
-				 * e1.printStackTrace(); } }
-				 * 
-				 * // Object to JSON in file
-				 * 
-				 * try {
-				 * 
-				 * mapper.writerWithDefaultPrettyPrinter(); mapper.writeValue(file,
-				 * AddAdminWindow.getAdmins()); CloseJframe();
-				 * 
-				 * } catch (Exception e) { JOptionPane.showMessageDialog(null, "save problem");
-				 * e.printStackTrace(); }
-				 */
 				setVisible(false);
-				
-				Encryption.encrypt(file1, new File("encryptedAdminsFile.txt"));
-				Encryption.encrypt(file2, new File("encryptedEmployeeFile.txt"));
-				Encryption.encrypt(file3, new File("encryptedStudentFile.txt"));
 
-				
 				System.exit(0);
 
 			}
@@ -247,7 +208,7 @@ public class PersonManagerWindow extends JFrame {
 		btnExit.setFont(new Font("Tahoma", Font.BOLD, 26));
 		btnExit.setBounds(484, 530, 266, 59);
 		contentPane.add(btnExit);
-		
+
 		JButton button = new JButton("Exit");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -259,28 +220,4 @@ public class PersonManagerWindow extends JFrame {
 		button.setBounds(52, 530, 266, 59);
 		contentPane.add(button);
 	}
-
-	public void CloseJframe() {
-		super.dispose();
-	}
-
-	public static String readFile(File file) {
-		String text = null;
-		BufferedReader reader;
-		Scanner scanner = null;
-
-		try {
-			reader = new BufferedReader(new FileReader(file));
-			scanner = new Scanner(file);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-
-		while (scanner.hasNext()) {
-			text = scanner.next();
-		}
-		return text;
-
-	}
-
 }

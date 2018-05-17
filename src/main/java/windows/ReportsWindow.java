@@ -10,6 +10,9 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.*;
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.SystemColor;
 
 public class ReportsWindow extends JFrame {
 
@@ -18,6 +21,8 @@ public class ReportsWindow extends JFrame {
 	private JTextField enteredSalary;
 	private JTextField enteredGrade;
 	private JButton btnBack;
+	private JSeparator separator;
+	private JSeparator separator_1;
 
 	/**
 	 * Launch the application.
@@ -42,7 +47,7 @@ public class ReportsWindow extends JFrame {
 	 */
 	public ReportsWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 820, 654);
+		setBounds(100, 100, 613, 433);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -51,11 +56,16 @@ public class ReportsWindow extends JFrame {
 		setLocationRelativeTo(null);
 		
 		enteredSalary = new JTextField();
-		enteredSalary.setBounds(355, 119, 80, 45);
+		enteredSalary.setHorizontalAlignment(SwingConstants.CENTER);
+		enteredSalary.setFont(new Font("SansSerif", Font.BOLD, 17));
+		enteredSalary.setBounds(444, 137, 80, 41);
 		contentPane.add(enteredSalary);
 		enteredSalary.setColumns(10);
 
 		JButton btnReportEmployeesWith = new JButton("Report Employees with Salary larger than ");
+		btnReportEmployeesWith.setForeground(new Color(0, 0, 255));
+		btnReportEmployeesWith.setBackground(new Color(220, 220, 220));
+		btnReportEmployeesWith.setFont(new Font("SansSerif", Font.BOLD, 13));
 		btnReportEmployeesWith.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -102,10 +112,13 @@ public class ReportsWindow extends JFrame {
 
 			}// AL
 		});
-		btnReportEmployeesWith.setBounds(55, 124, 276, 34);
+		btnReportEmployeesWith.setBounds(68, 137, 329, 41);
 		contentPane.add(btnReportEmployeesWith);
 
 		JButton btnReportStudentsWith = new JButton("Report Students with grade larger than ");
+		btnReportStudentsWith.setForeground(new Color(0, 0, 255));
+		btnReportStudentsWith.setBackground(new Color(220, 220, 220));
+		btnReportStudentsWith.setFont(new Font("SansSerif", Font.BOLD, 13));
 		btnReportStudentsWith.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -148,22 +161,41 @@ public class ReportsWindow extends JFrame {
 				}
 			}
 		});
-		btnReportStudentsWith.setBounds(55, 226, 276, 34);
+		btnReportStudentsWith.setBounds(68, 233, 329, 41);
 		contentPane.add(btnReportStudentsWith);
 
 		enteredGrade = new JTextField();
+		enteredGrade.setHorizontalAlignment(SwingConstants.CENTER);
+		enteredGrade.setFont(new Font("SansSerif", Font.BOLD, 17));
 		enteredGrade.setColumns(10);
-		enteredGrade.setBounds(355, 221, 80, 45);
+		enteredGrade.setBounds(444, 233, 80, 41);
 		contentPane.add(enteredGrade);
 		
 		btnBack = new JButton("Back");
+		btnBack.setForeground(new Color(255, 255, 255));
+		btnBack.setBackground(new Color(169, 169, 169));
+		btnBack.setFont(new Font("SansSerif", Font.BOLD, 17));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				PersonManagerWindow win = new PersonManagerWindow();
 				win.show();
 			}
 		});
-		btnBack.setBounds(618, 452, 108, 105);
+		btnBack.setBounds(10, 334, 101, 49);
 		contentPane.add(btnBack);
+		
+		JLabel lblReports = new JLabel("Reports");
+		lblReports.setHorizontalAlignment(SwingConstants.CENTER);
+		lblReports.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 58));
+		lblReports.setBounds(139, 11, 346, 62);
+		contentPane.add(lblReports);
+		
+		separator = new JSeparator();
+		separator.setBounds(40, 92, 521, 7);
+		contentPane.add(separator);
+		
+		separator_1 = new JSeparator();
+		separator_1.setBounds(40, 301, 521, 7);
+		contentPane.add(separator_1);
 	}
 }

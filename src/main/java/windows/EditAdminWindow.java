@@ -17,6 +17,8 @@ import java.awt.event.ActionListener;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.JSeparator;
 
 public class EditAdminWindow extends JFrame {
 
@@ -58,11 +60,6 @@ public class EditAdminWindow extends JFrame {
 
 		setLocationRelativeTo(null);
 
-		JLabel label = new JLabel("Admin");
-		label.setFont(new Font("Tahoma", Font.BOLD, 43));
-		label.setBounds(289, 11, 238, 90);
-		contentPane.add(label);
-
 		JLabel nameLabel = new JLabel("Name: ");
 		nameLabel.setForeground(Color.BLACK);
 		nameLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
@@ -72,53 +69,59 @@ public class EditAdminWindow extends JFrame {
 		JLabel ageLabel = new JLabel("Age: ");
 		ageLabel.setForeground(Color.BLACK);
 		ageLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
-		ageLabel.setBounds(54, 244, 115, 29);
+		ageLabel.setBounds(75, 209, 142, 45);
 		contentPane.add(ageLabel);
 
 		JLabel streetLabel = new JLabel("Street: ");
 		streetLabel.setForeground(Color.BLACK);
 		streetLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
-		streetLabel.setBounds(54, 338, 115, 29);
+		streetLabel.setBounds(75, 293, 142, 45);
 		contentPane.add(streetLabel);
 
 		JLabel houseLabel = new JLabel("House Num: ");
 		houseLabel.setForeground(Color.BLACK);
 		houseLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
-		houseLabel.setBounds(475, 134, 186, 29);
+		houseLabel.setBounds(11, 374, 207, 41);
 		contentPane.add(houseLabel);
 
 		JLabel cityLabel = new JLabel("City: ");
 		cityLabel.setForeground(Color.BLACK);
 		cityLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
-		cityLabel.setBounds(532, 244, 100, 29);
+		cityLabel.setBounds(475, 126, 206, 45);
 		contentPane.add(cityLabel);
 
 		name = new JTextField(LoginPageWindow.getAdminsList().get(index).getName());
+		name.setForeground(new Color(0, 0, 255));
 		name.setBounds(227, 133, 202, 42);
 		contentPane.add(name);
 		name.setColumns(10);
 
 		age = new JTextField(Integer.toString(LoginPageWindow.getAdminsList().get(index).getAge()));
+		age.setForeground(new Color(0, 0, 255));
 		age.setColumns(10);
-		age.setBounds(227, 231, 202, 42);
+		age.setBounds(227, 216, 202, 42);
 		contentPane.add(age);
 
 		street = new JTextField(LoginPageWindow.getAdminsList().get(index).getAddress().getStreetName());
+		street.setForeground(new Color(0, 0, 255));
 		street.setColumns(10);
-		street.setBounds(227, 337, 202, 42);
+		street.setBounds(227, 300, 202, 42);
 		contentPane.add(street);
 
 		house = new JTextField(LoginPageWindow.getAdminsList().get(index).getAddress().getHouseNumber());
+		house.setForeground(new Color(0, 0, 255));
 		house.setColumns(10);
-		house.setBounds(691, 133, 202, 42);
+		house.setBounds(227, 373, 202, 42);
 		contentPane.add(house);
 
 		city = new JTextField(LoginPageWindow.getAdminsList().get(index).getAddress().getCity());
+		city.setForeground(new Color(0, 0, 255));
 		city.setColumns(10);
-		city.setBounds(691, 243, 202, 42);
+		city.setBounds(691, 126, 202, 42);
 		contentPane.add(city);
 
 		JButton btnOkay = new JButton("Update");
+		btnOkay.setFont(new Font("SansSerif", Font.BOLD, 21));
 		btnOkay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				updateInfo3(index);
@@ -127,37 +130,54 @@ public class EditAdminWindow extends JFrame {
 
 			}
 		});
-		btnOkay.setBounds(75, 454, 339, 54);
+		btnOkay.setBounds(475, 417, 411, 54);
 		contentPane.add(btnOkay);
 
 		JButton btnBack = new JButton("Close");
+		btnBack.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				CloseJframe();
 			}
 		});
-		btnBack.setBounds(793, 469, 100, 50);
+		btnBack.setBounds(11, 458, 100, 50);
 		contentPane.add(btnBack);
 
 		JLabel lblUsername = new JLabel("Username");
 		lblUsername.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
-		lblUsername.setBounds(491, 322, 171, 45);
+		lblUsername.setBounds(475, 209, 206, 45);
 		contentPane.add(lblUsername);
 
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
-		lblPassword.setBounds(475, 390, 151, 54);
+		lblPassword.setBounds(475, 293, 206, 54);
 		contentPane.add(lblPassword);
 
 		username = new JTextField(LoginPageWindow.getAdminsList().get(index).getUserName());
+		username.setForeground(new Color(0, 0, 255));
 		username.setColumns(10);
-		username.setBounds(691, 337, 202, 42);
+		username.setBounds(691, 216, 202, 42);
 		contentPane.add(username);
 
 		password = new JTextField(LoginPageWindow.getAdminsList().get(index).getPassword());
+		password.setForeground(new Color(0, 0, 255));
 		password.setColumns(10);
-		password.setBounds(691, 390, 202, 42);
+		password.setBounds(691, 300, 202, 42);
 		contentPane.add(password);
+		
+		JLabel label_1 = new JLabel("Administrator");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		label_1.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 57));
+		label_1.setBounds(227, 11, 458, 90);
+		contentPane.add(label_1);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(227, 99, 458, 16);
+		contentPane.add(separator);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(223, 492, 458, 16);
+		contentPane.add(separator_1);
 
 	}
 
