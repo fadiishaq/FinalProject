@@ -307,7 +307,7 @@ Operation(JFrame.EXIT_ON_CLOSE);
 	
 	
 	
-public void updateInfo3(int x) {
+public void updateInfo3(int index) {
 
 /*		int i = 0;
 		for (Employee employee : AddEmployeeWindow.getEmployees()) {
@@ -315,16 +315,13 @@ public void updateInfo3(int x) {
 			i++;
 		}*/
 		
-	LoginPageWindow.getStudentsList().get(x).setName(name.getText());
-	LoginPageWindow.getStudentsList().get(x).setAge(Integer.parseInt(age.getText()));
-	LoginPageWindow.getStudentsList().get(x).getAddress().setStreetName(street.getText());
-	LoginPageWindow.getStudentsList().get(x).getAddress().setHouseNumber(house.getText());
-	LoginPageWindow.getStudentsList().get(x).getAddress().setCity(city.getText());
-	LoginPageWindow.getStudentsList().get(x).setGrade(Integer.parseInt(grade.getText()));
+	LoginPageWindow.getStudentsList().get(index).setName(name.getText());
+	LoginPageWindow.getStudentsList().get(index).setAge(Integer.parseInt(age.getText()));
+	LoginPageWindow.getStudentsList().get(index).getAddress().setStreetName(street.getText());
+	LoginPageWindow.getStudentsList().get(index).getAddress().setHouseNumber(house.getText());
+	LoginPageWindow.getStudentsList().get(index).getAddress().setCity(city.getText());
+	LoginPageWindow.getStudentsList().get(index).setGrade(Integer.parseInt(grade.getText()));
 
-		EditStudentInfo win = new EditStudentInfo(x);
-		setVisible(false);
-		win.setVisible(true);
 		//EmployeeInfoWindow win = new EmployeeInfoWindow(x);
 	}
 

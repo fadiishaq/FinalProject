@@ -1,0 +1,14 @@
+Employee:
+	Name: 1
+	Age: 21
+	Street Name: 1
+	House Number: 1
+	City: 1
+	Salary: 1
+Employee:
+	Name: 6
+	Age: 6
+	Street Name: 6
+	House Number: 6
+	City: 6
+	Salary: 6

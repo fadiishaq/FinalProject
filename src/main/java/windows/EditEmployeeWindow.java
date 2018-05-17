@@ -121,21 +121,7 @@ public class EditEmployeeWindow extends JFrame {
 		contentPane.add(name);
 		name.setColumns(10);
 		
-		name.getDocument().addDocumentListener(new DocumentListener() {
-			  public void changedUpdate(DocumentEvent e) {
-			    doSomethingInAnotherTextfield();
-			  }
-			  public void removeUpdate(DocumentEvent e) {
-			    doSomethingInAnotherTextfield();
-			  }
-			  public void insertUpdate(DocumentEvent e) {
-			    doSomethingInAnotherTextfield();
-			  }
 
-			  public void doSomethingInAnotherTextfield() {
-			     //whatever you have to do
-			  }
-			});
 
 		age = new JTextField(Integer.toString(LoginPageWindow.getEmployeesList().get(index).getAge()));
 		age.setColumns(10);
@@ -299,7 +285,6 @@ Operation(JFrame.EXIT_ON_CLOSE);
 		LoginPageWindow.getEmployeesList().get(index).getAddress().setCity(city.getText());
 		LoginPageWindow.getEmployeesList().get(index).setSalary(Integer.parseInt(salary.getText()));
 
-		EmployeeInfoWindow win = new EmployeeInfoWindow(index, false);
 	}
 	
 	

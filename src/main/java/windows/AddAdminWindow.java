@@ -106,7 +106,7 @@ public class AddAdminWindow extends JFrame {
 
 						LoginPageWindow.getAdminsList().add(admin);
 						
-						AdminInfoWindow adminInfo = new AdminInfoWindow(LoginPageWindow.getAdminsList().size() - 1, false);
+						AdminInfoWindow adminInfo = new AdminInfoWindow(LoginPageWindow.getAdminsList().size() - 1);
 						
 						setVisible(false);
 						

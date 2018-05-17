@@ -126,7 +126,7 @@ public class EditAdminWindow extends JFrame {
 		btnOkay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				updateInfo3(index);
-				CloseJframe();
+				setVisible(false);
 				JOptionPane.showMessageDialog(null, "Info has been updated!");
 
 			}
@@ -150,7 +150,7 @@ public class EditAdminWindow extends JFrame {
 
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
-		lblPassword.setBounds(481, 378, 151, 54);
+		lblPassword.setBounds(475, 390, 151, 54);
 		contentPane.add(lblPassword);
 
 		username = new JTextField(LoginPageWindow.getAdminsList().get(index).getUserName());
@@ -165,74 +165,7 @@ public class EditAdminWindow extends JFrame {
 
 	}
 
-	// -------------------------------------------------
-	// -------------------------------------------------
-	// -------------------------------------------------
-	// -------------------------------------------------
-
-	/*
-	 * public EditEmployeeWindow() { setDefault Operation(JFrame.EXIT_ON_CLOSE);
-	 * setBounds(100, 100, 930, 558); contentPane = new JPanel();
-	 * contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-	 * setContentPane(contentPane); contentPane.setLayout(null);
-	 * 
-	 * JLabel label = new JLabel("Employee"); label.setFont(new Font("Tahoma",
-	 * Font.BOLD, 43)); label.setBounds(328, 0, 279, 90); contentPane.add(label);
-	 * 
-	 * JLabel nameLabel = new JLabel("Name: ");
-	 * nameLabel.setForeground(Color.BLACK); nameLabel.setFont(new Font("Tahoma",
-	 * Font.BOLD | Font.ITALIC, 25)); nameLabel.setBounds(156, 94, 121, 45);
-	 * contentPane.add(nameLabel);
-	 * 
-	 * JLabel ageLabel = new JLabel("Age: "); ageLabel.setForeground(Color.BLACK);
-	 * ageLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
-	 * ageLabel.setBounds(156, 167, 81, 29); contentPane.add(ageLabel);
-	 * 
-	 * JLabel streetLabel = new JLabel("Street:");
-	 * streetLabel.setForeground(Color.BLACK); streetLabel.setFont(new
-	 * Font("Tahoma", Font.BOLD | Font.ITALIC, 25)); streetLabel.setBounds(155, 231,
-	 * 122, 29); contentPane.add(streetLabel);
-	 * 
-	 * JLabel houseLabel = new JLabel("House Num: ");
-	 * houseLabel.setForeground(Color.BLACK); houseLabel.setFont(new Font("Tahoma",
-	 * Font.BOLD | Font.ITALIC, 25)); houseLabel.setBounds(156, 283, 212, 29);
-	 * contentPane.add(houseLabel);
-	 * 
-	 * JLabel cityLabel = new JLabel("City: ");
-	 * cityLabel.setForeground(Color.BLACK); cityLabel.setFont(new Font("Tahoma",
-	 * Font.BOLD | Font.ITALIC, 25)); cityLabel.setBounds(171, 344, 121, 29);
-	 * contentPane.add(cityLabel);
-	 * 
-	 * JLabel salaryLabel = new JLabel("Salary: ");
-	 * salaryLabel.setForeground(Color.BLACK); salaryLabel.setFont(new
-	 * Font("Tahoma", Font.BOLD | Font.ITALIC, 25)); salaryLabel.setBounds(171, 403,
-	 * 133, 29); contentPane.add(salaryLabel);
-	 * 
-	 * JButton btnOkay = new JButton("Update"); btnOkay.addActionListener(new
-	 * ActionListener() { public void actionPerformed(ActionEvent e) {
-	 * 
-	 * } }); btnOkay.setBounds(208, 454, 455, 54); contentPane.add(btnOkay);
-	 * 
-	 * name = new JTextField(); name.setBounds(449, 101, 202, 42);
-	 * contentPane.add(name); name.setColumns(10);
-	 * 
-	 * age = new JTextField(); age.setColumns(10); age.setBounds(449, 154, 202, 42);
-	 * contentPane.add(age);
-	 * 
-	 * street = new JTextField(); street.setColumns(10); street.setBounds(437, 218,
-	 * 202, 42); contentPane.add(street);
-	 * 
-	 * house = new JTextField(); house.setColumns(10); house.setBounds(437, 270,
-	 * 202, 42); contentPane.add(house);
-	 * 
-	 * city = new JTextField(); city.setColumns(10); city.setBounds(437, 331, 202,
-	 * 42); contentPane.add(city);
-	 * 
-	 * salary = new JTextField(); salary.setColumns(10); salary.setBounds(426, 390,
-	 * 202, 42); contentPane.add(salary);
-	 * 
-	 * }
-	 */
+	
 
 	public void CloseJframe() {
 		super.dispose();
@@ -248,15 +181,10 @@ public class EditAdminWindow extends JFrame {
 		LoginPageWindow.getAdminsList().get(index).setUserName(username.getText());
 		LoginPageWindow.getAdminsList().get(index).setPassword(password.getText());
 
-		AdminInfoWindow win = new AdminInfoWindow(index, false);
 	}
 
 	public void updateInfo3(int x) {
 
-		/*
-		 * int i = 0; for (Employee employee : AddEmployeeWindow.getEmployees()) {
-		 * System.out.println(i + ": " + employee.getName()); i++; }
-		 */
 
 		LoginPageWindow.getAdminsList().get(x).setName(name.getText());
 		LoginPageWindow.getAdminsList().get(x).setAge(Integer.parseInt(age.getText()));
@@ -287,6 +215,6 @@ public class EditAdminWindow extends JFrame {
 		LoginPageWindow.getAdminsList().get(input).setUserName(username.getText());
 		LoginPageWindow.getAdminsList().get(input).setPassword(password.getText());
 
-		AdminInfoWindow win = new AdminInfoWindow(input, false);
+		AdminInfoWindow win = new AdminInfoWindow(input);
 	}
 }
